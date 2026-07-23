@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arindrajit Sarkar — Architecture Leader</title>
+<meta name="description" content="Portfolio and resume of Arindrajit Sarkar, Senior Solutions Architect specialising in Enterprise Architecture, Cloud, Data, and Pre-Sales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#FBFAF7;
+  --panel:#FFFFFF;
+  --panel-2:#F3F1EB;
+  --line:#C9C3B6;
+  --line-soft:#E4E0D5;
+  --cyan:#1F5B73;
+  --cyan-dim:#4C7E90;
+  --amber:#C17A2E;
+  --amber-dim:#8C5A1C;
+  --text:#000000;
+  --text-dim:#000000;
+  --green:#2F7A57;
+  --red:#B0432E;
+  --paper-note:#F3F1EB;
+  font-size:17.5px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-0.15em;flex-shrink:0;}
+a{color:#000000;text-decoration:none;}
+a:hover{text-decoration:underline;}
+::selection{background:var(--amber);color:#FFFFFF;}
+.mono{font-family:'IBM Plex Mono', monospace;}
+.condensed{font-family:'IBM Plex Sans Condensed', sans-serif;}
+
+/* ---------- registration marks / frame ---------- */
+.sheet-frame{
+  position:relative;
+  max-width:1180px;
+  margin:0 auto;
+  padding:28px 28px 140px;
+}
+.crosshair{
+  position:fixed;
+  width:18px;height:18px;
+  z-index:40;
+  pointer-events:none;
+  opacity:.55;
+}
+.crosshair::before,.crosshair::after{
+  content:"";position:absolute;background:var(--cyan-dim);
+}
+.crosshair::before{width:18px;height:1px;top:8.5px;left:0;}
+.crosshair::after{width:1px;height:18px;left:8.5px;top:0;}
+.ch-tl{top:14px;left:14px;} .ch-tr{top:14px;right:14px;} .ch-bl{bottom:14px;left:14px;} .ch-br{bottom:14px;right:14px;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 4px 10px;border-bottom:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.12em;
+  color:var(--text-dim);text-transform:uppercase;
+}
+.topbar span b{color:#000000;font-weight:600;}
+
+/* ---------- hero ---------- */
+.hero{
+  display:grid;grid-template-columns:190px 1fr;gap:36px;
+  padding:40px 32px;margin-top:20px;
+  align-items:start;
+  background:linear-gradient(155deg,#FFFFFF 0%,#F6F4ED 100%);
+  border:1px solid var(--line-soft);border-left:3px solid var(--amber);
+  box-shadow:0 1px 2px rgba(33,31,27,.03), 0 18px 36px -22px rgba(33,31,27,.16);
+}
+@media (max-width:700px){.hero{padding:28px 20px;grid-template-columns:1fr;}}
+.hero-photo-wrap{position:relative;width:190px;height:190px;}
+.hero-photo-wrap img{
+  width:190px;height:190px;object-fit:cover;
+  filter:contrast(1.03) saturate(1.02);
+  border:1px solid var(--line);
+  clip-path:polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px));
+}
+.hero-name{
+  font-family:'IBM Plex Mono',monospace;font-size:clamp(30px,4vw,44px);font-weight:600;
+  color:var(--text);letter-spacing:-.01em;margin:0 0 6px;
+}
+.hero-role{font-size:18px;color:#000000;margin:0 0 4px;font-weight:500;}
+.hero-sub{color:var(--text-dim);margin:0 0 18px;font-size:15.5px;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text-dim);margin-bottom:18px;}
+.hero-meta a,.hero-meta .dim{display:inline-flex;align-items:center;gap:7px;}
+.hero-meta a{color:var(--text-dim);}
+.hero-meta a .icon,.hero-meta .dim .icon{color:#000000;width:1.05em;height:1.05em;}
+.hero-meta a:hover{color:#000000;}
+.hero-meta .dim{color:#000000;}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line);padding:5px 11px;font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;color:#000000;letter-spacing:.05em;background:var(--panel-2);
+}
+.badge .icon{color:#000000;width:1em;height:1em;}
+
+/* ---------- nav tabs ---------- */
+.nav{
+  display:flex;
+  gap:2px;
+  padding:0;
+  border:1px solid var(--line-soft);
+  border-radius:3px;
+  position:sticky;top:18px;
+  background:linear-gradient(180deg,#FFFFFF,#FAF9F6);
+  box-shadow:0 1px 2px rgba(34,32,28,.04), 0 8px 24px -12px rgba(34,32,28,.10);
+  z-index:30;
+  margin:22px 0 4px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none;}
+.nav button{
+  position:relative;
+  flex:1 1 auto;
+  display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  white-space:nowrap;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;
+  background:transparent;border:none;color:var(--text-dim);
+  padding:16px 18px 14px;cursor:pointer;text-transform:uppercase;
+  transition:color .18s ease, background .18s ease;
+  border-right:1px solid var(--line-soft);
+}
+.nav button .icon{color:#000000;width:1.15em;height:1.15em;transition:color .18s ease;}
+.nav button.active .icon,.nav button:hover .icon{color:#000000;}
+.nav button:last-child{border-right:none;}
+.nav button::after{
+  content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;
+  background:var(--amber);transform:scaleX(0);transform-origin:left;
+  transition:transform .22s ease;
+}
+.nav button .n{color:#000000;margin-right:7px;font-weight:600;}
+.nav button:hover{color:var(--text);background:var(--panel-2);}
+.nav button.active{color:var(--text);background:#fff;font-weight:600;}
+.nav button.active::after{transform:scaleX(1);}
+.nav button.active .n{color:#000000;}
+.nav button:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
+@media (max-width:760px){
+  .nav{top:0;border-radius:0;}
+  .nav button{padding:13px 14px 11px;font-size:10.5px;}
+}
+
+/* ---------- sheet / section header ---------- */
+.panel{display:none;padding-top:38px;}
+.panel.active{display:block;animation:fadein .35s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.sheet-head{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+.sheet-icon{width:30px;height:30px;color:#000000;flex-shrink:0;padding:6px;border:1px solid var(--line-soft);background:var(--panel-2);box-sizing:content-box;}
+.sheet-num{
+  font-family:'IBM Plex Mono',monospace;color:#000000;font-size:14.5px;font-weight:700;
+  border:1px solid var(--amber-dim);padding:2px 8px;letter-spacing:.05em;
+}
+.sheet-title{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:var(--text);margin:0;}
+.sheet-desc{color:var(--text-dim);max-width:760px;margin:10px 0 30px;font-size:14.5px;}
+
+.dimline{
+  position:relative;height:22px;margin:0 0 34px;
+  border-top:1px solid var(--line);
+}
+.dimline::before,.dimline::after{
+  content:"";position:absolute;top:-4px;width:1px;height:8px;background:var(--line);
+}
+.dimline::before{left:0;} .dimline::after{right:0;}
+
+/* ---------- grid helpers ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media (max-width:860px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.card{
+  background:var(--panel);border:1px solid var(--line-soft);padding:22px 22px 20px;
+  position:relative;
+  box-shadow:0 1px 2px rgba(33,31,27,.03), 0 10px 26px -18px rgba(33,31,27,.18);
+  transition:box-shadow .2s ease, transform .2s ease;
+}
+.card:hover{box-shadow:0 2px 4px rgba(33,31,27,.04), 0 16px 32px -16px rgba(33,31,27,.22);transform:translateY(-1px);}
+.card::before{
+  content:"";position:absolute;top:0;left:0;width:14px;height:14px;
+  border-top:2px solid var(--amber);border-left:2px solid var(--amber);
+}
+.card h4,h4.mono{
+  display:flex;align-items:center;gap:9px;
+  font-family:'IBM Plex Mono',monospace;font-size:14.5px;text-transform:uppercase;letter-spacing:.08em;
+  color:#000000;margin:0 0 14px;
+}
+.card h4 .icon,h4.mono .icon{color:#000000;width:1.15em;height:1.15em;}
+.card p{font-size:15.5px;color:var(--text-dim);margin:0;}
+.card ul{margin:0;padding-left:0;list-style:none;font-size:15.5px;color:var(--text-dim);}
+.card ul li{padding:6px 0 6px 16px;border-bottom:1px dotted var(--line-soft);position:relative;}
+.card ul li:last-child{border-bottom:none;}
+.card ul li::before{content:"›";position:absolute;left:0;color:#000000;}
+.card ul li b{color:var(--text);font-weight:600;}
+
+/* skill gauges */
+.skills{display:flex;flex-direction:column;gap:14px;margin-top:10px;}
+.skill-row{display:grid;grid-template-columns:200px 1fr 40px;align-items:center;gap:12px;}
+.skill-label{font-size:14.5px;color:var(--text);}
+.skill-track{height:6px;background:var(--panel-2);border:1px solid var(--line-soft);position:relative;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--cyan-dim),var(--cyan));position:relative;}
+.skill-fill::after{content:"";position:absolute;right:0;top:-3px;width:1px;height:12px;background:var(--amber);}
+.skill-pct{font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#000000;text-align:right;}
+@media (max-width:700px){.skill-row{grid-template-columns:130px 1fr 34px;}}
+
+/* domain tags */
+.tagcloud{display:flex;flex-wrap:wrap;gap:10px;}
+.tagcloud span{
+  font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:var(--text-dim);
+  border:1px solid var(--line-soft);padding:6px 10px;
+}
+
+/* ---------- project cards (recent projects) ---------- */
+.project{
+  border:1px solid var(--line-soft);background:var(--panel);margin-bottom:34px;
+  position:relative;border-radius:2px;
+  box-shadow:0 1px 2px rgba(33,31,27,.03), 0 14px 30px -20px rgba(33,31,27,.20);
+}
+.project-top{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+  padding:18px 22px;border-bottom:1px dashed var(--line-soft);
+}
+.project-title{display:flex;align-items:center;gap:14px;}
+.project-title img{height:34px;width:auto;filter:brightness(1.15) contrast(1.05);background:#fff;padding:3px 6px;}
+.project-title h3{font-family:'IBM Plex Mono',monospace;font-size:18px;margin:0;color:var(--text);}
+.status{
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 10px;border:1px solid; display:flex; align-items:center; gap:6px;
+}
+.status.progress{color:#000000;border-color:var(--amber-dim);}
+.status.done{color:var(--green);border-color:var(--green);}
+.status::before{content:"●";font-size:9px;}
+.project-body{padding:22px;}
+.meta-row{display:flex;flex-wrap:wrap;gap:26px;margin-bottom:16px;font-size:14.5px;}
+.meta-row div span{display:block;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.meta-row div span::before{content:"—";color:#000000;margin-right:5px;}
+.meta-row div{padding-left:12px;border-left:2px solid var(--line-soft);}
+.meta-row div b{color:var(--text);font-weight:500;}
+.progress-bar-wrap{margin:14px 0 18px;}
+.progress-bar-wrap .lbl{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-dim);margin-bottom:5px;}
+.progress-bar{height:10px;background:var(--panel-2);border:1px solid var(--line-soft);}
+.progress-fill{height:100%;background:repeating-linear-gradient(45deg,var(--amber) 0 6px,var(--amber-dim) 6px 12px);}
+.tech-pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px;}
+.tech-pills span{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#000000;border:1px solid var(--line-soft);padding:4px 9px;}
+.project-body h5{font-family:'IBM Plex Mono',monospace;font-size:13.5px;text-transform:uppercase;letter-spacing:.07em;color:#000000;margin:22px 0 10px;}
+.project-body h5::before{content:"◆";color:#000000;margin-right:8px;font-size:10px;}
+.project-body p{font-size:15.5px;color:var(--text-dim);margin:0 0 8px;}
+.resp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media (max-width:760px){.resp-grid{grid-template-columns:1fr;}}
+.resp-item{border-left:2px solid var(--line);padding-left:12px;}
+.resp-item b{font-size:14.5px;color:var(--text);display:block;margin-bottom:3px;}
+.resp-item span{font-size:14.5px;color:var(--text-dim);}
+.figure{margin:18px 0;}
+.figure img{width:100%;border:1px solid var(--line-soft);display:block;}
+.figure figcaption{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-dim);margin-top:6px;text-align:center;}
+.bars{display:flex;align-items:flex-end;gap:10px;height:120px;margin:14px 0;}
+
+/* ---------- activity diagram (stages of engagement) ---------- */
+.activity-wrap{margin:16px 0 22px;border:1px solid var(--line-soft);background:var(--panel);padding:18px 6px 6px;box-shadow:0 1px 2px rgba(33,31,27,.03), 0 14px 28px -20px rgba(33,31,27,.16);}
+.activity-wrap svg{width:100%;height:auto;display:block;}
+
+/* ---------- GCP layer grid ---------- */
+.layer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0;}
+@media (max-width:860px){.layer-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.layer-grid{grid-template-columns:1fr;}}
+.layer-card{border:1px solid var(--line-soft);background:var(--panel);padding:13px 14px;position:relative;box-shadow:0 1px 2px rgba(33,31,27,.03);}
+.layer-card .ref{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:5px;color:#fff;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:11.5px;
+  margin-bottom:8px;
+}
+.layer-card h6{margin:0 0 5px;font-size:13.5px;color:var(--text);font-family:'IBM Plex Mono',monospace;}
+.layer-card p{margin:0;font-size:13px;color:var(--text-dim);}
+
+/* ---------- data tables (technical detail) ---------- */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0 6px;}
+.data-table th,.data-table td{border:1px solid var(--line-soft);padding:8px 10px;text-align:left;vertical-align:top;}
+.data-table th{background:var(--panel-2);font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#000000;}
+.data-table tr:nth-child(even) td{background:var(--panel-2);}
+.data-table td b{color:var(--text);}
+
+details.techdrop{border:1px solid var(--line-soft);background:var(--panel);margin:18px 0;}
+details.techdrop summary{
+  cursor:pointer;padding:13px 16px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+  text-transform:uppercase;letter-spacing:.06em;color:#000000;list-style:none;
+  display:flex;align-items:center;gap:9px;
+}
+details.techdrop summary::-webkit-details-marker{display:none;}
+details.techdrop summary::before{content:"▸";color:#000000;transition:transform .18s ease;}
+details.techdrop[open] summary::before{transform:rotate(90deg);}
+details.techdrop .techdrop-body{padding:4px 16px 18px;}
+
+/* ---------- service blueprint ---------- */
+.blueprint-wrap{overflow-x:auto;margin:16px 0 22px;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(33,31,27,.03), 0 14px 28px -20px rgba(33,31,27,.16);}
+.blueprint-table{width:100%;min-width:900px;border-collapse:collapse;font-size:12.5px;}
+.blueprint-table th,.blueprint-table td{border:1px solid var(--line-soft);padding:10px 12px;text-align:left;vertical-align:top;}
+.blueprint-table thead th{background:var(--panel-2);font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#000000;}
+.blueprint-table th.bp-corner{background:var(--text);color:#fff;}
+.bp-label{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:7px;}
+.bp-label .icon{color:var(--amber);width:1.05em;height:1.05em;}
+.bp-customer td{background:#EAF2FE;}
+.bp-frontstage td{background:#F5EEFC;}
+.bp-backstage td{background:#EAFAF0;}
+.bp-support td{background:#FFF8E1;}
+.bp-lane td:not(.bp-label){font-size:12px;}
+.bar{flex:1;background:linear-gradient(180deg,var(--cyan),var(--cyan-dim));position:relative;}
+.bar span{position:absolute;top:-20px;left:0;right:0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);}
+.bar em{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);font-style:normal;}
+
+/* assignments grid */
+.assign-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0;}
+@media (max-width:760px){.assign-grid{grid-template-columns:1fr;}}
+.assign-item{border:1px solid var(--line-soft);padding:12px 14px;font-size:14.5px;}
+.assign-item b{display:block;color:#000000;font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px;}
+.assign-item span{color:var(--text-dim);}
+
+/* numbered sub-sections (used cases 1-4) */
+.numsec{display:flex;gap:16px;margin-bottom:22px;}
+.numsec .num{font-family:'IBM Plex Mono',monospace;font-size:22px;color:#000000;font-weight:700;min-width:34px;}
+.numsec .body h5{margin:0 0 6px;color:#000000;font-size:15.5px;}
+.numsec .body p{margin:0 0 8px;}
+.numsec .body ul{margin:0;padding-left:18px;color:var(--text-dim);font-size:13.5px;}
+.numsec .body ul li{margin-bottom:4px;}
+
+/* ---------- experience timeline ---------- */
+.timeline{position:relative;padding-left:26px;border-left:1px solid var(--line);margin-top:10px;}
+.tl-item{position:relative;padding-bottom:34px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:"";position:absolute;left:-31px;top:4px;width:9px;height:9px;background:var(--ink);border:2px solid var(--amber);border-radius:50%;}
+.tl-head{display:flex;align-items:center;gap:14px;margin-bottom:4px;}
+.tl-avatar{
+  width:42px;height:42px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.02em;
+  box-shadow:0 1px 2px rgba(33,31,27,.15);
+}
+.tl-item h3{font-family:'IBM Plex Mono',monospace;font-size:16.5px;color:var(--text);margin:0 0 2px;}
+.tl-item .co{color:#000000;font-size:14.5px;}
+.tl-item .dur{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:12px;margin:6px 0 12px;}
+.tl-item .dur .icon{color:#000000;}
+.tl-item ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--text-dim);}
+.tl-item ul li{margin-bottom:5px;}
+
+/* ---------- ADR cards ---------- */
+.adr{border:1px solid var(--line-soft);background:var(--panel);margin-bottom:26px;border-radius:2px;box-shadow:0 1px 2px rgba(33,31,27,.03), 0 14px 30px -20px rgba(33,31,27,.20);}
+.adr-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px dashed var(--line-soft);flex-wrap:wrap;}
+.adr-head h3{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--text);margin:0;}
+.adr-app{font-size:13.5px;color:var(--text-dim);font-style:italic;}
+.adr-body{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media (max-width:820px){.adr-body{grid-template-columns:1fr;}}
+.adr-col h6{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:#000000;margin:0 0 8px;}
+.adr-col h6::before{content:"▸";margin-right:6px;}
+.adr-col ul{margin:0 0 14px;padding-left:16px;font-size:13.5px;color:var(--text-dim);}
+.adr-col ul li{margin-bottom:5px;}
+.adr-col .decision{color:var(--text);font-size:13.5px;background:var(--panel-2);border-left:2px solid var(--amber);padding:10px 12px;margin-bottom:14px;}
+.adr-img{margin-top:6px;}
+.adr-img img{width:100%;border:1px solid var(--line-soft);}
+.adr-img .cap{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--text-dim);margin-top:6px;}
+
+/* ---------- EA / TOGAF phases ---------- */
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px;}
+@media (max-width:900px){.phase-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.phase-grid{grid-template-columns:1fr;}}
+.phase{border:1px solid var(--line-soft);padding:16px 14px 14px;position:relative;background:var(--panel);box-shadow:0 1px 2px rgba(33,31,27,.03);}
+.phase-icon{width:20px;height:20px;color:#000000;margin-top:6px;}
+.phase .letter{position:absolute;top:-11px;left:12px;background:var(--ink);color:#000000;font-family:'IBM Plex Mono',monospace;font-size:12.5px;padding:0 6px;font-weight:700;}
+.phase h6{margin:8px 0 6px;color:#000000;font-size:14.5px;font-family:'IBM Plex Mono',monospace;}
+.phase p{margin:0;font-size:12.5px;color:var(--text-dim);}
+.principles{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+.principles span{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink);background:var(--cyan);padding:6px 10px;font-weight:600;}
+
+/* ---------- bid & RFP ---------- */
+.check-list{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 26px;}
+.check-list div{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text);background:var(--panel);border:1px solid var(--line-soft);padding:9px 13px;box-shadow:0 1px 2px rgba(33,31,27,.03);}
+.check-list div .icon{color:var(--green);width:1.1em;height:1.1em;}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0;}
+@media (max-width:700px){.stat-strip{grid-template-columns:1fr;}}
+.stat-box{border:1px solid var(--line-soft);background:var(--panel);padding:22px 20px;text-align:center;box-shadow:0 1px 2px rgba(33,31,27,.03), 0 14px 28px -20px rgba(33,31,27,.18);}
+.stat-box .icon{width:22px;height:22px;color:#000000;margin-bottom:8px;}
+.stat-box .num{font-family:'IBM Plex Mono',monospace;font-size:34px;color:#000000;font-weight:700;}
+.stat-box .lbl{font-size:13.5px;color:var(--text-dim);margin-top:4px;}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+@media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+.contact-card{border:1px solid var(--line-soft);background:var(--panel);padding:26px;border-radius:2px;box-shadow:0 1px 2px rgba(33,31,27,.03), 0 14px 30px -20px rgba(33,31,27,.20);}
+.contact-line{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dotted var(--line-soft);font-size:15.5px;}
+.contact-line:last-child{border-bottom:none;}
+.contact-line span{display:inline-flex;align-items:center;gap:7px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;}
+.contact-line span .icon{color:#000000;width:1.1em;height:1.1em;}
+.edu-item{margin-bottom:14px;}
+.edu-item b{display:block;color:var(--text);font-size:15.5px;}
+.edu-item span{color:var(--text-dim);font-size:14.5px;}
+.cert-list{list-style:none;margin:0;padding:0;}
+.cert-list li{font-size:13.5px;color:var(--text-dim);padding:6px 0;border-bottom:1px dotted var(--line-soft);}
+.cert-list li:last-child{border-bottom:none;}
+.cert-list li::before{content:"✓ ";color:var(--green);}
+
+footer{
+  text-align:center;padding:40px 4px 20px;color:var(--text-dim);font-size:13.5px;
+  font-family:'IBM Plex Mono',monospace;border-top:1px dashed var(--line);margin-top:40px;
+}
+
+/* accessibility */
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){
+  .panel.active{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M4 6.5 12 13 20 6.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.7a11 11 0 0 0 5.8 5.8l1.7-2 4 1.5v3c0 1-1 1.7-2 1.5-6-1-11-6-12.5-12-.2-1 .5-2 1.5-2z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7.5" y1="10" x2="7.5" y2="17"/><circle cx="7.5" cy="6.7" r="0.4"/><path d="M11.5 17v-4.2c0-1.5 1-2.6 2.5-2.6s2.5 1.1 2.5 2.6V17"/><line x1="11.5" y1="10" x2="11.5" y2="17"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2H19.5A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-11z"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12" rx="1.5"/><path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5"/><line x1="3" y1="12.5" x2="21" y2="12.5"/></symbol>
+  <symbol id="i-git" viewBox="0 0 24 24"><circle cx="6" cy="5.5" r="2"/><circle cx="6" cy="18.5" r="2"/><circle cx="18" cy="9.5" r="2"/><path d="M6 7.5v9"/><path d="M6 9.5c0 3 4 3 6 3s6 0 6-1V9.5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4 13 20l-2.5-6.5L4 12z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.5"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M15.5 13.8c2.2.3 4 1.9 4 4.2"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5c2-1 5-1 8 .5v13c-3-1.5-6-1.5-8-.5v-13z"/><path d="M20 5.5c-2-1-5-1-8 .5v13c3-1.5 6-1.5 8-.5v-13z"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9"/><path d="M15 6h6v6"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 21l5-2.5 5 2.5-1.5-7.5"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13"/><path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><path d="M4 7h6M4 7l-2 5a3 3 0 0 0 6 0L6 7"/><path d="M14 7h6M14 7l-2 5a3 3 0 0 0 6 0l-2-5"/></symbol>
+</svg>
+
+<div class="crosshair ch-tl"></div>
+<div class="crosshair ch-tr"></div>
+<div class="crosshair ch-bl"></div>
+<div class="crosshair ch-br"></div>
+
+<div class="sheet-frame">
+
+  <div class="topbar">
+    <span>PROJECT: <b>ARINDRAJIT SARKAR — CAREER PORTFOLIO</b></span>
+    <span>DRAWING SET · REV 2026.07</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-photo-wrap">
+      <img src="https://priyaanka.blob.core.windows.net/arinportfolio/Arin.png" alt="Arindrajit Sarkar">
+    </div>
+    <div>
+      <h1 class="hero-name">Arindrajit Sarkar</h1>
+      <p class="hero-role">Architecture Leader — Digital Transformation &amp; Modernization</p>
+      <p class="hero-sub">20+ years · Azure · AWS · GCP · London, UK</p>
+      <div class="hero-meta">
+        <a href="mailto:arindrajit@live.com"><svg class="icon"><use href="#i-mail"/></svg>arindrajit@live.com</a>
+        <a href="tel:+447586593548"><svg class="icon"><use href="#i-phone"/></svg>+44 7586 593548</a>
+        <a href="https://www.linkedin.com/in/arindrajitsarkar" target="_blank" rel="noopener"><svg class="icon"><use href="#i-linkedin"/></svg>linkedin.com/in/arindrajitsarkar</a>
+        <span class="dim"><svg class="icon"><use href="#i-pin"/></svg>London, UK</span>
+      </div>
+      <div class="hero-badges">
+        <span class="badge"><svg class="icon"><use href="#i-award"/></svg>Azure Solution Architect Expert</span>
+        <span class="badge"><svg class="icon"><use href="#i-award"/></svg>AWS Associate Solution Architect</span>
+        <span class="badge"><svg class="icon"><use href="#i-award"/></svg>TOGAF (Preparing)</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <button class="active" data-tab="overview" data-sheet="A-01"><svg class="icon"><use href="#i-layers"/></svg>Overview</button>
+    <button data-tab="projects" data-sheet="A-02"><svg class="icon"><use href="#i-folder"/></svg>Recent Projects</button>
+    <button data-tab="experience" data-sheet="A-03"><svg class="icon"><use href="#i-briefcase"/></svg>Experience</button>
+    <button data-tab="solution" data-sheet="A-04"><svg class="icon"><use href="#i-git"/></svg>Solution Architecture</button>
+    <button data-tab="enterprise" data-sheet="A-05"><svg class="icon"><use href="#i-grid"/></svg>Enterprise Architecture</button>
+    <button data-tab="bid" data-sheet="A-06"><svg class="icon"><use href="#i-target"/></svg><span class="n">A-06</span>Bid &amp; RFP</button>
+    <button data-tab="contact" data-sheet="A-07"><svg class="icon"><use href="#i-send"/></svg><span class="n">A-07</span>Contact</button>
+  </nav>
+
+  <!-- ===================== OVERVIEW ===================== -->
+  <section class="panel active" id="panel-overview">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-layers"/></svg><h2 class="sheet-title">Overview</h2></div>
+    <p class="sheet-desc">Enterprise &amp; Solutions Architect with two decades of experience defining technical vision and delivering scalable, reliable architecture across large-scale engineering organisations.</p>
+    <div class="dimline"></div>
+
+    <div class="grid2" style="margin-bottom:34px;">
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-bulb"/></svg>Summary</h4>
+        <p>20+ years of experience as an Enterprise and Solutions Architect, defining and delivering technical vision and strategy for scalable, reliable, and maintainable architecture across large-scale engineering organizations. Proven digital leader with experience line managing, coaching, and mentoring architects, presenting to and influencing C-level colleagues, and driving change at scale through cross-discipline collaboration. Deep expertise in cloud computing (AWS, Azure, GCP), platform strategy, monitoring &amp; observability, event-driven and micro-service architectures, and agile delivery at scale. Passionate about driving the strategic adoption of AI across the SDLC and staying at the forefront of digital transformation.</p>
+      </div>
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-trend"/></svg>Current Core Skills</h4>
+        <div class="skills">
+          <div class="skill-row"><span class="skill-label">Enterprise &amp; Solution Architecture</span><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div><span class="skill-pct">95%</span></div>
+          <div class="skill-row"><span class="skill-label">Cloud (Azure, AWS, GCP)</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-label">Data &amp; Analytics Platforms</span><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div><span class="skill-pct">88%</span></div>
+          <div class="skill-row"><span class="skill-label">Pre-Sales &amp; Bids</span><div class="skill-track"><div class="skill-fill" style="width:92%"></div></div><span class="skill-pct">92%</span></div>
+          <div class="skill-row"><span class="skill-label">IT Governance &amp; Compliance</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-label">AI Development (Azure OpenAI, GHCP, LLMs)</span><div class="skill-track"><div class="skill-fill" style="width:91%"></div></div><span class="skill-pct">91%</span></div>
+          <div class="skill-row"><span class="skill-label">Software Development (.NET &amp; SQL)</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="mono" style="color:#000000;text-transform:uppercase;font-size:14.5px;letter-spacing:.08em;margin-bottom:16px;"><svg class="icon"><use href="#i-cpu"/></svg>Architecture &amp; Technology Skills</h4>
+    <div class="grid2" style="margin-bottom:34px;">
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-cpu"/></svg>Tools &amp; Technologies</h4>
+        <ul>
+          <li><b>Cloud &amp; Platform:</b> Azure PaaS/IaaS — App Service, Functions, API Management, Service Bus, VNETs, Event Grid, Cosmos DB, Logic Apps; AWS PaaS; GCP Data Services</li>
+          <li><b>Data &amp; Analytics:</b> Databricks, Azure Data Factory, Data Lake, BigQuery, Kafka</li>
+          <li><b>Datastores:</b> SQL Server, Azure SQL, Cosmos DB, MongoDB, Delta Lake, Blob/Object Storage</li>
+          <li><b>Infrastructure &amp; Orchestration:</b> Kubernetes (AKS), Docker, Terraform, Bicep, Helm</li>
+          <li><b>DevOps &amp; CI/CD:</b> Azure DevOps, GitHub Actions, pipelines, release gates, IaC testing</li>
+          <li><b>Languages &amp; Frameworks:</b> .NET / C#, Python, SQL, JavaScript/TypeScript</li>
+          <li><b>AI &amp; ML infra:</b> Azure OpenAI, GHCP, custom agents, vector stores, embeddings, RAG, model hosting &amp; inference scaling</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-git"/></svg>Design Patterns &amp; Architecture</h4>
+        <ul>
+          <li><b>Patterns:</b> TOGAF, Azure Well-Architected patterns, C4 diagrams, DDD, Load Balancing, Scatter &amp; Gather, Execution Orchestrator, Anti-Corruption, Choreography, Pipes &amp; Filter, Sidecar, Saga, CQRS, Event Sourcing, Retry, DLQ, CAP theorem, Service-Based, Event-Driven, Progressive-Web, Micro-frontend &amp; API architecture</li>
+          <li><b>Integration:</b> Transactional Outbox, Pub/Sub, Event-driven, Pipes &amp; Filters, Scatter &amp; Gather</li>
+          <li><b>Data Patterns:</b> Materialised Views, ELT/Lakehouse, Canonical Models, Partitioning &amp; Schema Evolution</li>
+          <li><b>Security &amp; Compliance:</b> RBAC, Key Vault/Secrets, Private Endpoints, encryption, auditing, policy-as-code</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:34px;">
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-cpu"/></svg>AI Expertise</h4>
+        <p style="margin-bottom:12px;">Applied AI and LLM engineering focused on delivering secure, scalable, production-grade intelligence within cloud-native platforms.</p>
+        <ul>
+          <li><b>Generative AI &amp; LLMs:</b> Azure OpenAI &amp; GHCP solutions — prompt engineering, fine-tuning, embeddings, RAG.</li>
+          <li><b>Custom agents (GHCP):</b> Orchestration, tool connectors, workflow automation, secured access patterns.</li>
+          <li><b>Application architecture:</b> AI-enabled APIs, microservices, serverless functions integrating LLMs and vector stores.</li>
+          <li><b>Data, privacy &amp; governance:</b> Secure ingestion, anonymisation, lineage, access controls, responsible-AI principles.</li>
+          <li><b>Scalability &amp; cost:</b> Inference scale, batching, caching, autoscaling, hybrid architectures.</li>
+          <li><b>Observability &amp; SRE for AI:</b> Telemetry, SLOs/SLIs, prompt/response logging, incident playbooks.</li>
+          <li><b>Capability uplift:</b> Runbooks, patterns, ADRs, mentoring teams on generative AI adoption.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-users"/></svg>Leadership &amp; Strategy</h4>
+        <ul>
+          <li><b>Strategic technology leadership:</b> TOGAF-aligned roadmaps tied to business outcomes.</li>
+          <li><b>AI &amp; data strategy:</b> Responsible AI adoption, RAG/assistant/automation prioritisation, model &amp; data lifecycle governance.</li>
+          <li><b>Transformation &amp; modernization:</b> Cloud migration strategy, landing zones, platform standardisation.</li>
+          <li><b>Stakeholder &amp; executive engagement:</b> Briefings, workshops, multi-disciplinary alignment.</li>
+          <li><b>Capability building:</b> Architect communities, mentoring, training, playbooks.</li>
+          <li><b>Governance &amp; assurance:</b> ADRs, design authorities, security &amp; compliance gating.</li>
+          <li><b>Outcomes &amp; performance:</b> KPIs, SLOs, ROI for cost and reliability optimisation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4><svg class="icon"><use href="#i-book"/></svg>Domain Knowledge</h4>
+      <div class="tagcloud">
+        <span>UK Public Sector (DEFRA, DfE, ESFA)</span>
+        <span>Reverse Logistics &amp; Supply Chain</span>
+        <span>Banking &amp; Financial Services</span>
+        <span>E-Commerce &amp; Retail Platforms</span>
+        <span>Insurance Underwriting &amp; Finance</span>
+        <span>Manufacturing &amp; Operational Systems</span>
+        <span>Media &amp; Communications</span>
+        <span>Education &amp; Learner Data</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RECENT PROJECTS ===================== -->
+  <section class="panel" id="panel-projects">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-folder"/></svg><h2 class="sheet-title">Recent Projects</h2></div>
+    <p class="sheet-desc">Four programmes spanning DEFRA and DfE — legacy replatforming, funding modernisation, schools data services, and national learner-attendance architecture.</p>
+    <div class="dimline"></div>
+
+    <!-- DEFRA EQ PPP -->
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/Defra.png" alt="DEFRA logo">
+          <h3>DEFRA EQ PPP — Pesticide PPP Modernisation</h3>
+        </div>
+        <div class="status progress">In Progress</div>
+      </div>
+      <div class="project-body">
+        <div class="meta-row">
+          <div><span>Department</span><b>DEFRA — Environmental Quality (Pesticides), delivered with UK Gov HSE</b></div>
+          <div><span>Role</span><b>Enterprise Architect</b></div>
+          <div><span>Duration</span><b>Apr 2026 – Present</b></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="lbl"><span>Completion</span><span>15%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
+        </div>
+        <div class="tech-pills">
+          <span>Google Cloud Platform</span><span>Cloud Run / GKE</span><span>Cloud SQL (PostgreSQL)</span><span>Firestore</span><span>Cloud Storage</span><span>GCP Pub/Sub</span><span>Webhook</span><span>DEFRA Entra Identity</span><span>Cloud Armor</span><span>Cloud CDN &amp; Load Balancing</span><span>Microsoft Power BI</span><span>Microsoft Dynamics 365 (retained)</span><span>Dataverse Business Events</span>
+        </div>
+
+        <h5>Programme Brief</h5>
+        <p>Appointed as Enterprise Architect to design the end-to-end target architecture for DEFRA's Environmental Quality — Pesticides PPP (Plant Protection Products) application, covering <b style="color:var(--text)">Submission, Sift, Evaluation &amp; Decision</b> stages from the ground up. Today this process is run by the UK Gov HSE department largely manually, spread across multiple legacy desktop mini-applications that are, in places, close to 20 years old. The programme replaces this fragmented estate with a single cloud-native, GCP-hosted service — while retaining Dynamics 365 case management unchanged — giving applicants, caseworkers and regulators a consistent, auditable, and scalable digital journey.</p>
+
+        <h5>Stages of Engagement</h5>
+        <p style="margin-bottom:10px;">Current phase spans structured discovery through to target architecture design, ahead of build.</p>
+        <div class="activity-wrap">
+          <svg viewBox="0 0 980 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Activity diagram: Workshops, then Discovery, then Assessments, then Design (Architecture)">
+            <defs>
+              <marker id="ppp-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#C17A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+            <line x1="112" y1="70" x2="222" y2="70" stroke="#C17A2E" stroke-width="2" marker-end="url(#ppp-arrow)"/>
+            <line x1="342" y1="70" x2="452" y2="70" stroke="#C17A2E" stroke-width="2" marker-end="url(#ppp-arrow)"/>
+            <line x1="572" y1="70" x2="682" y2="70" stroke="#C17A2E" stroke-width="2" marker-end="url(#ppp-arrow)"/>
+
+            <!-- Stage 1: Workshops -->
+            <g>
+              <rect x="2" y="20" width="110" height="100" rx="8" fill="#F3F1EB" stroke="#1F5B73" stroke-width="1.6"/>
+              <circle cx="20" cy="38" r="10" fill="#C17A2E"/>
+              <text x="20" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#fff">1</text>
+              <text x="57" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700" fill="#211F1B">Workshops</text>
+              <text x="57" y="86" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">Stakeholder &amp;</text>
+              <text x="57" y="100" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">SME alignment</text>
+            </g>
+
+            <!-- Stage 2: Discovery -->
+            <g>
+              <rect x="222" y="20" width="120" height="100" rx="8" fill="#F3F1EB" stroke="#1F5B73" stroke-width="1.6"/>
+              <circle cx="240" cy="38" r="10" fill="#C17A2E"/>
+              <text x="240" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#fff">2</text>
+              <text x="282" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700" fill="#211F1B">Discovery</text>
+              <text x="282" y="86" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">Legacy desktop</text>
+              <text x="282" y="100" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">app inventory</text>
+            </g>
+
+            <!-- Stage 3: Assessments -->
+            <g>
+              <rect x="452" y="20" width="120" height="100" rx="8" fill="#F3F1EB" stroke="#1F5B73" stroke-width="1.6"/>
+              <circle cx="470" cy="38" r="10" fill="#C17A2E"/>
+              <text x="470" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#fff">3</text>
+              <text x="512" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700" fill="#211F1B">Assessments</text>
+              <text x="512" y="86" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">Process, data &amp;</text>
+              <text x="512" y="100" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">risk assessment</text>
+            </g>
+
+            <!-- Stage 4: Design -->
+            <g>
+              <rect x="682" y="20" width="130" height="100" rx="8" fill="#EAF2FE" stroke="#1F5B73" stroke-width="2"/>
+              <circle cx="700" cy="38" r="10" fill="#1F5B73"/>
+              <text x="700" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#fff">4</text>
+              <text x="747" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700" fill="#211F1B">Design</text>
+              <text x="747" y="86" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">Target</text>
+              <text x="747" y="100" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#6B665D">architecture</text>
+              <text x="747" y="114" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="9.5" fill="#8C5A1C" font-style="italic">(in progress)</text>
+            </g>
+
+            <text x="112" y="155" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B665D">Apr 2026</text>
+            <text x="812" y="155" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B665D">current stage</text>
+            <line x1="0" y1="140" x2="812" y2="140" stroke="#E4E0D5" stroke-width="1" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+
+        <h5>Target Architecture — Delivered to Date</h5>
+        <p>Reference architecture defines a single GCP project/VPC (regional, e.g. <code>europe-west2</code>) replacing the previous AWS/Azure hosting, structured across seven functional layers — Dynamics 365 case management, DEFRA's Entra ID tenant and Power BI reporting retained/adopted as Microsoft-managed services, integrated into GCP via Private Service Connect/VPN and a webhook-driven event bridge.</p>
+
+        <div class="activity-wrap">
+          <svg viewBox="0 0 1130 840" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DEFRA EQ PPP target architecture">
+              <defs>
+  <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#1F5B73" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arch-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#2F7A57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arch-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#B0432E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+              <rect x="0" y="0" width="1130" height="840" fill="#FFFFFF"/>
+              <rect x="10" y="45" width="150" height="255" rx="6" fill="#FDEAEA" stroke="#B0432E" stroke-width="1.6" stroke-dasharray="4 3"/>
+              <text x="20" y="63" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#B0432E" text-anchor="start" >External systems</text>
+              <text x="20" y="79" font-family="IBM Plex Sans, sans-serif" font-size="10" font-weight="700" fill="#000000" text-anchor="start" >IUCLID 6 (ECHA)</text>
+              <text x="24" y="95" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• IUCLID API sync</text>
+              <text x="24" y="109" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Chemical validation</text>
+              <text x="24" y="123" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Substance data sync</text>
+              <text x="24" y="137" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Schema validation</text>
+              <text x="20" y="163" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="400" fill="#000000" text-anchor="start" font-style="italic">A: manual import/export</text>
+              <text x="20" y="177" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="400" fill="#000000" text-anchor="start" font-style="italic">B: REST / OAuth 2.0 API</text>
+              <text x="20" y="191" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="400" fill="#000000" text-anchor="start" >Method: TBC</text>
+              <rect x="175" y="10" width="805" height="770" rx="10" fill="#EAF2FE" stroke="#4285F4" stroke-width="2.5"/>
+              <text x="195" y="30" font-family="IBM Plex Sans, sans-serif" font-size="13" font-weight="700" fill="#4285F4" text-anchor="start" >DEFRA Ecosystem</text>
+              <rect x="195" y="42" width="770" height="60" rx="8" fill="#FFFFFF" stroke="#7b1fa2" stroke-width="2"/>
+              <text x="210" y="60" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="700" fill="#7b1fa2" text-anchor="start" >Security Layer</text>
+              <text x="210" y="78" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Cloud CDN (edge)     • Cloud Load Balancing (L7)     • Cloud Armor (WAF/DDoS)     • Cloud DNS (zone)</text>
+              <rect x="195" y="115" width="335" height="235" rx="8" fill="#FFFFFF" stroke="#4285F4" stroke-width="2"/>
+              <circle cx="205" cy="115" r="10" fill="#4285F4"/>
+              <text x="205" y="119" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" >A</text>
+              <text x="222" y="135" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="700" fill="#4285F4" text-anchor="start" >Frontend &amp; data layer</text>
+              <rect x="207" y="147" width="311" height="195" rx="6" fill="#F3F8FF" stroke="#4285F4" stroke-width="1.2"/>
+              <text x="215" y="163" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="700" fill="#000000" text-anchor="start" >Applicant portal (Cloud Run / GKE)</text>
+              <text x="215" y="178" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="600" fill="#000000" text-anchor="start" >Pesticide · Biocide · Active substances</text>
+              <text x="215" y="195.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Dossier builder (REST/JSON)</text>
+              <text x="215" y="208.5" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• GOV.UK Pay (HTTPS/TLS 1.2+)</text>
+              <text x="215" y="222.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Document manager (signed URLs)</text>
+              <text x="215" y="235.5" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Messaging hub (Pub/Sub push)</text>
+              <text x="215" y="249.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Notifications (Cloud Functions)</text>
+              <text x="215" y="262.5" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Address lookup (external API)</text>
+              <text x="215" y="276.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Direct access provisioning (IAM)</text>
+              <rect x="545" y="115" width="435" height="235" rx="8" fill="#FFFFFF" stroke="#7b1fa2" stroke-width="2"/>
+              <circle cx="555" cy="115" r="10" fill="#7b1fa2"/>
+              <text x="555" y="119" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" >B</text>
+              <text x="572" y="135" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="700" fill="#7b1fa2" text-anchor="start" >Identity &amp; Security Layer</text>
+              <rect x="557" y="147" width="413" height="195" rx="6" fill="#FFFFFF" stroke="#7b1fa2" stroke-width="1.2"/>
+              <text x="566" y="165" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="700" fill="#7b1fa2" text-anchor="start" >DEFRA Entra Identity</text>
+              <text x="566" y="183" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Azure Entra ID — tenant SSO</text>
+              <text x="566" y="198" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• SAML 2.0 / OIDC federation</text>
+              <text x="566" y="213" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Conditional Access &amp; MFA</text>
+              <text x="566" y="228" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Cloud NAT / VPC gateway</text>
+              <text x="566" y="243" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• IAM roles &amp; service accounts</text>
+              <rect x="1000" y="100" width="120" height="95" rx="6" fill="#FFFFFF" stroke="#333333" stroke-width="1.4"/>
+              <circle cx="1010" cy="100" r="10" fill="#333333"/>
+              <text x="1010" y="104" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" >C</text>
+              <text x="1010" y="119" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="700" fill="#000000" text-anchor="start" >User types</text>
+              <text x="1010" y="135.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• UK citizens (external)</text>
+              <text x="1010" y="148.5" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• HSE / DEFRA (internal)</text>
+              <rect x="195" y="370" width="335" height="120" rx="8" fill="#FFFFFF" stroke="#34A853" stroke-width="2"/>
+              <circle cx="205" cy="370" r="10" fill="#34A853"/>
+              <text x="205" y="374" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" >D</text>
+              <text x="222" y="390" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#2F7A57" text-anchor="start" >Data &amp; file storage layer</text>
+              <text x="210" y="410" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Cloud SQL for PostgreSQL (private IP)</text>
+              <text x="210" y="424" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Firestore (Native mode)</text>
+              <text x="210" y="438" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Cloud Storage (Standard, CMEK)</text>
+              <rect x="545" y="370" width="200" height="120" rx="8" fill="#FFF8E1" stroke="#F2C811" stroke-width="2"/>
+              <circle cx="555" cy="370" r="10" fill="#F2C811"/>
+              <text x="555" y="374" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#000000" text-anchor="middle" >E</text>
+              <text x="572" y="390" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#a15c00" text-anchor="start" >Reporting layer</text>
+              <text x="555" y="408" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="700" fill="#000000" text-anchor="start" >Microsoft Power BI</text>
+              <text x="555" y="424.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Premium/Fabric workspace</text>
+              <text x="555" y="437.5" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• DirectQuery — Cloud SQL</text>
+              <text x="555" y="451.0" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Row-level security (RLS)</text>
+              <rect x="765" y="370" width="205" height="430" rx="8" fill="#F5EEFC" stroke="#6a1b9a" stroke-width="2"/>
+              <circle cx="775" cy="370" r="10" fill="#6a1b9a"/>
+              <text x="775" y="374" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" >F</text>
+              <text x="792" y="390" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#6a1b9a" text-anchor="start" >Backstage layer</text>
+              <rect x="777" y="402" width="181" height="330" rx="6" fill="#FFFFFF" stroke="#0078D4" stroke-width="1.4"/>
+              <text x="785" y="419" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="700" fill="#0078D4" text-anchor="start" >Microsoft Dynamics 365</text>
+              <text x="785" y="434" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" font-style="italic">Case management (unchanged)</text>
+              <text x="785" y="451" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="600" fill="#000000" text-anchor="start" >Pesticide · Biocide · Active substances</text>
+              <text x="785" y="469" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• OLGA — off-label / adjuvants</text>
+              <text x="785" y="484" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• RAID — chemical manual gen.</text>
+              <text x="785" y="499" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• BAS — spreadsheet operations</text>
+              <text x="785" y="514" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Files &amp; address repository</text>
+              <text x="785" y="529" font-family="IBM Plex Sans, sans-serif" font-size="9.5" font-weight="400" fill="#000000" text-anchor="start" >• Other common operations</text>
+              <rect x="785" y="554" width="165" height="42" rx="5" fill="#EAF2FE" stroke="#0078D4" stroke-width="1.4" stroke-dasharray="3 2"/>
+              <text x="867" y="571" font-family="IBM Plex Sans, sans-serif" font-size="9.2" font-weight="700" fill="#0078D4" text-anchor="middle" >Dataverse Business Events</text>
+              <text x="867" y="585" font-family="IBM Plex Sans, sans-serif" font-size="8" font-weight="400" fill="#000000" text-anchor="middle" font-style="italic">fires on case status change</text>
+              <text x="785" y="717" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Connectivity: Private Service</text>
+              <text x="785" y="729" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Connect / VPN</text>
+              <rect x="195" y="515" width="335" height="285" rx="8" fill="#FFF3F0" stroke="#EA4335" stroke-width="2"/>
+              <circle cx="205" cy="515" r="10" fill="#EA4335"/>
+              <text x="205" y="519" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" >G</text>
+              <text x="222" y="535" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#EA4335" text-anchor="start" >Data integration layer — GCP end-to-end</text>
+              <rect x="232" y="555" width="260" height="48" rx="6" fill="#FFFFFF" stroke="#EA4335" stroke-width="1.8"/>
+              <text x="362" y="575" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#EA4335" text-anchor="middle" >Webhook</text>
+              <text x="362" y="590" font-family="IBM Plex Sans, sans-serif" font-size="8.3" font-weight="400" fill="#000000" text-anchor="middle" font-style="italic">outbound HTTPS trigger from Dataverse</text>
+              <rect x="232" y="627" width="260" height="48" rx="6" fill="#FFFFFF" stroke="#4285F4" stroke-width="1.8"/>
+              <text x="362" y="647" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#4285F4" text-anchor="middle" >Cloud Run</text>
+              <text x="362" y="662" font-family="IBM Plex Sans, sans-serif" font-size="8.3" font-weight="400" fill="#000000" text-anchor="middle" font-style="italic">stateless event-handling service</text>
+              <line x1="362" y1="605" x2="362" y2="625" stroke="#555555" stroke-width="1.8" marker-end="url(#arch-arrow)"/>
+              <rect x="232" y="699" width="260" height="48" rx="6" fill="#FFFFFF" stroke="#34A853" stroke-width="1.8"/>
+              <text x="362" y="719" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#34A853" text-anchor="middle" >GCP Pub/Sub</text>
+              <text x="362" y="734" font-family="IBM Plex Sans, sans-serif" font-size="8.3" font-weight="400" fill="#000000" text-anchor="middle" font-style="italic">CDP &amp; CCoE topics — downstream sync</text>
+              <line x1="362" y1="677" x2="362" y2="697" stroke="#555555" stroke-width="1.8" marker-end="url(#arch-arrow)"/>
+              <path d="M785 575 H492 V563" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#arch-arrow)"/>
+              <rect x="10" y="555" width="150" height="150" rx="6" fill="#EAFAF0" stroke="#34A853" stroke-width="1.6" stroke-dasharray="4 3"/>
+              <text x="20" y="575" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="700" fill="#2F7A57" text-anchor="start" >External EU DBs</text>
+              <text x="20" y="595" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="400" fill="#000000" text-anchor="start" >Manual data entry (TBC)</text>
+              <text x="20" y="635" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="700" fill="#000000" text-anchor="start" >Automated update (TBC)</text>
+              <path d="M362 102 V115" fill="none" stroke="#1F5B73" stroke-width="1.6" marker-end="url(#arch-arrow)"/>
+              <path d="M760 102 V115" fill="none" stroke="#1F5B73" stroke-width="1.6" marker-end="url(#arch-arrow)"/>
+              <path d="M1000 165 H980" fill="none" stroke="#1F5B73" stroke-width="1.6" marker-end="url(#arch-arrow)"/>
+              <path d="M765 335 V355 H362 V350" fill="none" stroke="#1F5B73" stroke-width="1.6" marker-end="url(#arch-arrow)"/>
+              <path d="M362 350 V370" fill="none" stroke="#1F5B73" stroke-width="1.8" marker-end="url(#arch-arrow)" marker-start="url(#arch-arrow)"/>
+              <text x="372" y="362" font-family="IBM Plex Sans, sans-serif" font-size="8.7" font-weight="400" fill="#1F5B73" text-anchor="start" font-style="italic">Data Read/Write</text>
+              <path d="M530 430 H545" fill="none" stroke="#1F5B73" stroke-width="1.6" marker-end="url(#arch-arrow)"/>
+              <path d="M765 495 H745" fill="none" stroke="#1F5B73" stroke-width="1.6" marker-end="url(#arch-arrow)"/>
+              <path d="M492 723 H785" fill="none" stroke="#2F7A57" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#arch-arrow-green)"/>
+              <path d="M232 735 H160" fill="none" stroke="#2F7A57" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#arch-arrow-green)"/>
+              <path d="M100 705 V800 H400 V800" fill="none" stroke="#2F7A57" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#arch-arrow-green)"/>
+              <path d="M160 200 H195" fill="none" stroke="#B0432E" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#arch-arrow-red)"/>
+              </svg>
+        </div>
+
+        <div class="layer-grid">
+          <div class="layer-card"><span class="ref" style="background:#7b1fa2;">—</span><h6>Security Layer</h6><p>Perimeter layer fronting the whole ecosystem — Cloud CDN, Cloud Load Balancing (L7), Cloud Armor (WAF/DDoS), Cloud DNS.</p></div>
+          <div class="layer-card"><span class="ref" style="background:#4285F4;">A</span><h6>Frontend &amp; data layer</h6><p>Unchanged — applicant portal: dossier builder, GOV.UK Pay, document manager, messaging hub, notifications (Cloud Run / GKE).</p></div>
+          <div class="layer-card"><span class="ref" style="background:#7b1fa2;">B</span><h6>Identity &amp; Security Layer</h6><p>DEFRA Entra Identity — Azure Entra ID SSO, SAML 2.0/OIDC federation, Conditional Access &amp; MFA, IAM roles &amp; service accounts.</p></div>
+          <div class="layer-card"><span class="ref" style="background:#333;">C</span><h6>User types</h6><p>External UK citizens (applicants) and internal HSE/DEFRA staff, routed via distinct access paths.</p></div>
+          <div class="layer-card"><span class="ref" style="background:#34A853;">D</span><h6>Data &amp; file storage layer</h6><p>Cloud SQL (PostgreSQL, private IP), Firestore (native mode), Cloud Storage (CMEK-encrypted).</p></div>
+          <div class="layer-card"><span class="ref" style="background:#F2C811;">E</span><h6>Reporting layer — Microsoft Power BI</h6><p>Power BI (Premium/Fabric workspace) — DirectQuery to Cloud SQL, row-level security for caseworkers and regulators.</p></div>
+          <div class="layer-card"><span class="ref" style="background:#6a1b9a;">F</span><h6>Backstage layer — Microsoft Dynamics 365</h6><p>Dynamics 365 case management (unchanged) — Pesticide/Biocide/Active substances tooling incl. OLGA and RAID generators; emits Dataverse Business Events on case changes.</p></div>
+          <div class="layer-card"><span class="ref" style="background:#EA4335;">G</span><h6>Data integration layer — GCP end-to-end</h6><p>Dataverse Business Events → Webhook → Cloud Run → GCP Pub/Sub, replacing the prior mixed messaging estate with a single GCP-native event chain.</p></div>
+        </div>
+
+        <details class="techdrop">
+          <summary><svg class="icon"><use href="#i-database"/></svg>Step-by-step technical flow</summary>
+          <div class="techdrop-body">
+            <table class="data-table">
+              <tr><th>Step</th><th>Flow</th><th>Technical detail</th></tr>
+              <tr><td>2</td><td>UK citizens / HSE-DEFRA → Security Layer</td><td>HTTPS requests hit Cloud CDN edge, then Cloud Load Balancing (external HTTPS LB), filtered by Cloud Armor</td></tr>
+              <tr><td>3</td><td>Security Layer → Identity &amp; Security Layer</td><td>Load balancer forwards via VPC; request authenticated against DEFRA's Azure Entra ID tenant</td></tr>
+              <tr><td>4</td><td>DEFRA Entra Identity → Applicant portal</td><td>SAML 2.0 / OIDC SSO assertion returned after Conditional Access/MFA checks; session token issued; failed validation redirects to sign-in (TBC)</td></tr>
+              <tr><td>5</td><td>Applicant portal → Data &amp; file storage layer</td><td>Read/write to Cloud SQL, Firestore and Cloud Storage via private IP</td></tr>
+              <tr><td>6</td><td>Data storage → Reporting layer</td><td>Power BI connects via DirectQuery to Cloud SQL / Firestore for live dashboards</td></tr>
+              <tr><td>7</td><td>GCP Pub/Sub → Backstage (Dynamics 365)</td><td>Cloud Run consumes Pub/Sub messages and writes case data back to Dynamics 365 via its API</td></tr>
+              <tr><td>8</td><td>Data integration layer → External EU DBs</td><td>Scheduled batch job or event trigger syncs data out (SFTP/REST)</td></tr>
+              <tr><td>9</td><td>External EU DBs → Data integration layer</td><td>Manual and automated updates (TBC) flow back in for reconciliation</td></tr>
+              <tr><td>10</td><td>Backstage → Reporting layer</td><td>Dynamics 365 case data exposed to Power BI over internal traffic</td></tr>
+              <tr><td>11</td><td>External systems (IUCLID 6/ECHA) → Applicant portal</td><td>Chemical/substance validation via REST + OAuth 2.0 API, or manual import/export (method TBC)</td></tr>
+              <tr><td>12</td><td>Dynamics 365 → Webhook → Cloud Run → GCP Pub/Sub</td><td>Dataverse Business Events fire on case status change; an outbound webhook triggers a Cloud Run handler, which publishes to the CDP/CCoE Pub/Sub topics — the full GCP-native replacement for the former messaging estate</td></tr>
+            </table>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- LAP -->
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/Defra.png" alt="DEFRA logo">
+          <h3>LAP — Legacy Application Programme</h3>
+        </div>
+        <div class="status done">Completed</div>
+      </div>
+      <div class="project-body">
+        <div class="meta-row">
+          <div><span>Department</span><b>DEFRA</b></div>
+          <div><span>Role</span><b>Chief Solutions Architect</b></div>
+          <div><span>Duration</span><b>Dec 2025 – Apr 2026</b></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="lbl"><span>Completion</span><span>100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--green),#4C7E90);"></div></div>
+        </div>
+        <div class="tech-pills">
+          <span>Azure</span><span>AWS</span><span>GCP</span><span>.NET Core</span><span>MongoDB</span><span>SQL Server</span><span>Kubernetes</span><span>Terraform</span><span>CI/CD</span>
+        </div>
+
+        <h5>Programme Brief</h5>
+        <p>Lead architecture and delivery of a cross-government modernisation to replatform DEFRA's legacy application estate onto Azure &amp; AWS — secure, observable, resilient, cost-efficient target architectures aligned to departmental strategy, compliance and operational SLAs.</p>
+
+        <h5>Core Responsibilities</h5>
+        <div class="resp-grid">
+          <div class="resp-item"><b>Target architecture &amp; tools</b><span>Cloud topology, integration fabric, security baseline, data strategy (relational &amp; NoSQL).</span></div>
+          <div class="resp-item"><b>Discovery &amp; assessment</b><span>Inventories, dependency mapping, risk profiling, cloud-readiness scoring.</span></div>
+          <div class="resp-item"><b>Migration engineering</b><span>Cutover patterns, reconciliation, idempotent pipelines, automated validation.</span></div>
+          <div class="resp-item"><b>Governance</b><span>Chair architecture reviews, maintain TDRs/ADRs, enforce design gates.</span></div>
+        </div>
+
+        <h5>Technical Deliverables</h5>
+        <div class="resp-grid">
+          <div class="resp-item"><b>HLSA / HLD</b><span>Integration and data migration design incl. Cosmos DB / MongoDB patterns.</span></div>
+          <div class="resp-item"><b>IaC &amp; CI/CD</b><span>Modules, pipelines and automated test harnesses for repeatable deployments.</span></div>
+          <div class="resp-item"><b>Observability</b><span>Monitoring, SLIs/SLAs, alerting, incident runbooks.</span></div>
+          <div class="resp-item"><b>Capability uplift</b><span>Mentoring architects/engineers, quality gates for production readiness.</span></div>
+        </div>
+
+        <h5>Responsibilities &amp; Activities</h5>
+        <div class="resp-grid">
+          <div class="resp-item"><b>End-to-end solution architecture</b><span>Migration of legacy applications, aligned to cloud strategy and cross-government standards.</span></div>
+          <div class="resp-item"><b>Data migration &amp; datastore selection</b><span>SQL and NoSQL migration approach, optimal store per domain, data integrity.</span></div>
+          <div class="resp-item"><b>Leadership &amp; capability building</b><span>Mentor junior architects; define patterns and quality gates.</span></div>
+          <div class="resp-item"><b>Stakeholder engagement</b><span>Validate requirements and traceability with delivery teams.</span></div>
+          <div class="resp-item"><b>Security, resilience &amp; DevOps</b><span>Patterns for all cloud-hosted workloads.</span></div>
+          <div class="resp-item"><b>Governance &amp; assurance</b><span>Architecture boards, risk assessments, TDRs/ADRs.</span></div>
+        </div>
+
+        <h5>Application Complexity Breakdown</h5>
+        <div class="bars">
+          <div class="bar" style="height:88%;"><span>High</span><em>Core</em></div>
+          <div class="bar" style="height:54%;"><span>Med</span><em>Integr.</em></div>
+          <div class="bar" style="height:66%;"><span>Med-Hi</span><em>Data</em></div>
+          <div class="bar" style="height:32%;"><span>Low</span><em>Legacy UI</em></div>
+          <div class="bar" style="height:47%;"><span>Low-Med</span><em>Reporting</em></div>
+        </div>
+        <figure class="figure">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/LAP.png" alt="LAP delivery visual">
+          <figcaption>Fig. A2.1 — LAP project stages</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ESFA -->
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/DFE-logo.png" alt="DfE logo">
+          <h3>ESFA — Funding Service Modernisation</h3>
+        </div>
+        <div class="status done">Delivered</div>
+      </div>
+      <div class="project-body">
+        <div class="meta-row">
+          <div><span>Department</span><b>Education &amp; Skills Funding Agency</b></div>
+          <div><span>Role</span><b>Principal Solutions Architect</b></div>
+          <div><span>Duration</span><b>Apr 2022 – Jan 2025</b></div>
+        </div>
+        <div class="tech-pills">
+          <span>Azure</span><span>.NET</span><span>Cosmos DB</span><span>SQL Server</span><span>Event Grid</span><span>API Management</span><span>Azure Functions</span><span>CQRS</span><span>Saga</span>
+        </div>
+        <p>Architected and delivered a domain-driven, event-centric funding platform for ESFA, modernising legacy funding systems into a scalable Azure-native solution — reliable event flows, transactional integrity for payments, read-optimised projections, and analytics for policy and forecasting, with governance, security and auditability for large-volume financial processing.</p>
+
+        <h5>Event-Driven Architecture</h5>
+        <ul style="margin:0 0 6px;padding-left:18px;color:var(--text-dim);font-size:13.5px;">
+          <li>Portals &amp; apps routed via API Management.</li>
+          <li>Command services publish to Event Grid.</li>
+          <li>Polyglot persistence (SQL/MongoDB) for auditability.</li>
+        </ul>
+
+        <h5>Throughput Improvement</h5>
+        <div class="bars">
+          <div class="bar" style="height:40%;background:linear-gradient(180deg,var(--text-dim),var(--line));"><span>Before</span><em>2022</em></div>
+          <div class="bar" style="height:100%;"><span>After</span><em>2025</em></div>
+        </div>
+
+        <h5>Top 10 Assignments</h5>
+        <div class="assign-grid">
+          <div class="assign-item"><b>Domain Driven Design</b><span>Strategic design of bounded contexts and ubiquitous language.</span></div>
+          <div class="assign-item"><b>Data Centralization</b><span>Consolidate disparate data into canonical platforms.</span></div>
+          <div class="assign-item"><b>Azure Tenancy</b><span>Design and governance of multi-subscription tenancy.</span></div>
+          <div class="assign-item"><b>Cloud Onboarding</b><span>Migration playbooks and landing zones.</span></div>
+          <div class="assign-item"><b>NoSQL Transformation</b><span>Re-architecture for scalable document stores.</span></div>
+          <div class="assign-item"><b>DevOps</b><span>CI/CD, environment-as-code and automated tests.</span></div>
+          <div class="assign-item"><b>Schools Accounts Onboarding</b><span>Onboarding and integration of schools and LAs.</span></div>
+          <div class="assign-item"><b>Payments Sync</b><span>Reconciliation between contracted &amp; non-contracted payment streams.</span></div>
+          <div class="assign-item"><b>Funding Allocation Visibility</b><span>Transparent allocation statements with audit trails.</span></div>
+          <div class="assign-item"><b>Contract Digitization</b><span>Digitise funding contract workflows for approvals and compliance.</span></div>
+        </div>
+
+        <figure class="figure">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/ESFA.png" alt="ESFA use case visual">
+          <figcaption>Fig. A2.2 — ESFA system flow</figcaption>
+        </figure>
+
+        <h5>Use Case Overview</h5>
+        <p>Design a cloud-native funding platform on Azure for the Department for Education, modernising legacy, mixed on-prem/cloud funding systems (handling ~£100B annually) into a well-architected, domain-driven, event-centric solution using Azure PaaS, Azure SQL Database, Azure Cosmos DB, and TOGAF-aligned governance.</p>
+
+        <div class="numsec">
+          <div class="num">1</div>
+          <div class="body">
+            <h5 style="margin-top:0;">Cloud Modernization Architecture</h5>
+            <p>Migrate critical funding workloads from on-prem to a secure, resilient, cost-efficient Azure PaaS platform.</p>
+            <ul>
+              <li><b style="color:var(--text)">Compute:</b> App Service for microservices/APIs; Functions for serverless event-driven tasks.</li>
+              <li><b style="color:var(--text)">Integration &amp; messaging:</b> Service Bus for commands/sagas; Event Hubs / Event Grid for streaming.</li>
+              <li><b style="color:var(--text)">Networking &amp; security:</b> VNet, Private Endpoints, App Gateway, API Management, Key Vault, Managed Identities, Azure AD.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="numsec">
+          <div class="num">2</div>
+          <div class="body">
+            <h5 style="margin-top:0;">Service Modernization Architecture</h5>
+            <p>Refactor the monolithic funding system into domain-aligned microservices with CQRS and event-driven orchestration.</p>
+            <ul>
+              <li>Funding Calculation Service (rules, rates, pupil characteristics)</li>
+              <li>Allocations &amp; Approvals Service (entitlements, adjustments, governance)</li>
+              <li>Payments Service (schedules, remittances, reconciliation)</li>
+              <li>Statements &amp; Contracts Service (school-facing artefacts)</li>
+              <li>Reporting &amp; Analytics Service (operational and strategic insight)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="numsec">
+          <div class="num">3</div>
+          <div class="body">
+            <h5 style="margin-top:0;">Database Architecture</h5>
+            <p>Centralised, compliant system of record with polyglot persistence for performance and flexibility.</p>
+            <ul>
+              <li><b style="color:var(--text)">System of record:</b> Azure SQL for allocations, contracts, schedules, audit logs.</li>
+              <li><b style="color:var(--text)">Read-optimised:</b> Cosmos DB for denormalised school summaries and portal views.</li>
+              <li><b style="color:var(--text)">Streaming &amp; analytics:</b> Event Hubs/Event Grid → Data Lake via Data Factory/Synapse → BI &amp; policy modelling.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="numsec">
+          <div class="num">4</div>
+          <div class="body">
+            <h5 style="margin-top:0;">Governance (TOGAF)</h5>
+            <p>Ensure modernisation is strategic, controlled and compliant.</p>
+            <ul>
+              <li>TOGAF-aligned cloud-first, event-driven platform principles: data-as-a-shared-asset, security &amp; privacy by design, automation everywhere.</li>
+              <li>BDAT governance across Business, Data, Application, Technology; review boards, pattern catalogues, staged cutovers, rollback plans.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schools Account -->
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/DFE-logo.png" alt="DfE logo">
+          <h3>Schools Account — Data Services Platform</h3>
+        </div>
+        <div class="status done">Delivered</div>
+      </div>
+      <div class="project-body">
+        <div class="meta-row">
+          <div><span>Department</span><b>DfE Schools Group</b></div>
+          <div><span>Role</span><b>Principal Solutions Architect</b></div>
+          <div><span>Duration</span><b>Jan 2023 – Mar 2024</b></div>
+        </div>
+        <div class="tech-pills">
+          <span>Azure App Service</span><span>Azure Functions</span><span>Azure SQL</span><span>Cosmos DB</span><span>API Management</span><span>Azure DevOps</span><span>Terraform</span><span>Databricks</span>
+        </div>
+        <p>The Schools Group manages diverse finance, compliance and pupil datasets, previously collected via manual offline processes. This programme delivered an end-to-end digital platform on Azure automating collection, consolidation and secure publication for schools, institutions and local authorities — combining resilient PaaS services with NoSQL stores for schema-flexible, low-latency access, complemented by Azure SQL as the authoritative store, emphasising data quality, canonical modelling and auditable pipelines.</p>
+
+        <div class="grid2" style="margin-top:18px;">
+          <div>
+            <h5 style="margin-top:0;">Architecture &amp; Technology</h5>
+            <ul style="margin:0;padding-left:18px;color:var(--text-dim);font-size:13.5px;">
+              <li><b style="color:var(--text)">APIs &amp; ingestion:</b> API Management, secure REST endpoints, event-driven ingestion.</li>
+              <li><b style="color:var(--text)">Primary stores:</b> Azure SQL (system of record), Cosmos DB / MongoDB (read models).</li>
+              <li><b style="color:var(--text)">Processing:</b> Functions/App Services for transformations; Databricks for analytics.</li>
+              <li><b style="color:var(--text)">Security:</b> Azure AD, Key Vault, RBAC, audit logging, data classification.</li>
+            </ul>
+          </div>
+          <div>
+            <h5 style="margin-top:0;">Patterns &amp; Models</h5>
+            <ul style="margin:0;padding-left:18px;color:var(--text-dim);font-size:13.5px;">
+              <li>CQRS for read/write separation; Saga for long-running processes and compensations.</li>
+              <li>Centralised canonical models (up to 3NF relational); denormalised documents for portal views.</li>
+              <li>Event-driven messaging via Service Bus / Event Grid with transactional outbox patterns.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h5>Project Operating Model</h5>
+        <div class="resp-grid">
+          <div class="resp-item"><b>1) Assessment &amp; Discovery</b><span>Inventory, data profiling, dependency mapping, NFR baselining.</span></div>
+          <div class="resp-item"><b>2) Architecture &amp; Design</b><span>Reference architectures, security, data contracts, migration runbooks.</span></div>
+          <div class="resp-item"><b>3) Development &amp; Implementation</b><span>Agile sprints, CI/CD pipelines, parallel runs, staged cutovers.</span></div>
+        </div>
+
+        <h5>Operating Phases (Proportion)</h5>
+        <div class="bars">
+          <div class="bar" style="height:30%;"><span>25%</span><em>Discovery</em></div>
+          <div class="bar" style="height:45%;"><span>35%</span><em>Design</em></div>
+          <div class="bar" style="height:100%;"><span>40%</span><em>Build</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DDTi -->
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/DFE-logo.png" alt="DfE logo">
+          <h3>DDTi — Digital &amp; Data Incubator</h3>
+        </div>
+        <div class="status done">Completed</div>
+      </div>
+      <div class="project-body">
+        <div class="meta-row">
+          <div><span>Department</span><b>DfE Digital &amp; Data Technology Incubator</b></div>
+          <div><span>Role</span><b>Senior Solutions Architect</b></div>
+          <div><span>Duration</span><b>Jan 2025 – Dec 2025</b></div>
+        </div>
+        <div class="tech-pills">
+          <span>Azure PaaS</span><span>Kafka</span><span>MongoDB</span><span>Cosmos DB</span><span>.NET</span><span>SQL</span><span>BigQuery</span>
+        </div>
+        <p>As Senior Solutions Architect within DfE's DDTi division for Skills and Learner Data groups, led design and delivery of an enterprise-grade solution consolidating real-time learner and attendance data for Post-16 and adult learners across England. Modernised disconnected on-premise systems into a cloud-native, API-first, event-oriented platform using Azure, containerisation, microservices, Terraform and CI/CD — owning canonical modelling, secure ingestion, safeguarding controls and integration contracts for consistent, auditable, analytic-ready datasets.</p>
+
+        <h5>Core Deliverables</h5>
+        <div class="resp-grid">
+          <div class="resp-item"><b>High-throughput ingestion &amp; lakehouse</b><span>Reliable pipelines and raw/curated/served zones with schema evolution and partitioning.</span></div>
+          <div class="resp-item"><b>Robust system solution architecture</b><span>Integration patterns, bounded contexts, SLA/resiliency for national-scale attendance processing.</span></div>
+          <div class="resp-item"><b>Canonical data model &amp; contracts</b><span>Versioned data contracts and API/stream interfaces across institutions and LAs.</span></div>
+          <div class="resp-item"><b>Event-driven processing &amp; CQRS</b><span>Domain events and materialised projections for near real-time reconciliation.</span></div>
+          <div class="resp-item"><b>AI-enabled data quality</b><span>Automated anomaly detection, enrichment and corrective workflows.</span></div>
+        </div>
+
+        <div class="check-list">
+          <div><svg class="icon"><use href="#i-check"/></svg>Improved funding accuracy</div>
+          <div><svg class="icon"><use href="#i-check"/></svg>Reduced technical debt</div>
+          <div><svg class="icon"><use href="#i-check"/></svg>Scalable, auditable platform</div>
+        </div>
+
+        <h5>Solution Architecture Deliverables</h5>
+        <div class="resp-grid">
+          <div class="resp-item"><b>Cloud-native platform &amp; landing zones</b><span>Well-architected Azure tenancy and networking for secure multi-tenant operations.</span></div>
+          <div class="resp-item"><b>Real-time attendance solution architecture</b><span>Delivered real-time capture system supporting funding, safeguarding and monitoring.</span></div>
+          <div class="resp-item"><b>Learner data architecture</b><span>Real-time attendance data model and integration patterns across UK institutions and DfE.</span></div>
+          <div class="resp-item"><b>Security, privacy &amp; governance</b><span>Data classification, RBAC, encryption, auditing, policy-as-code for public-sector compliance.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Group Adult Attendance -->
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">
+          <img src="https://priyaanka.blob.core.windows.net/arinportfolio/DFE-logo.png" alt="DfE logo">
+          <h3>Skills Group Adult Attendance</h3>
+        </div>
+        <div class="status done">Completed</div>
+      </div>
+      <div class="project-body">
+        <div class="meta-row">
+          <div><span>Department</span><b>DfE — Skills Group, Adult Education Service</b></div>
+          <div><span>Role</span><b>Lead Solution Architect</b></div>
+          <div><span>Duration</span><b>Feb 2025 – Dec 2025</b></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="lbl"><span>Completion</span><span>100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--green),#4C7E90);"></div></div>
+        </div>
+        <div class="tech-pills">
+          <span>Google Cloud Platform</span><span>Cloud Run / GKE (PaaS)</span><span>Compute Engine (IaaS)</span><span>BigQuery</span><span>Cloud Storage</span><span>Cloud Pub/Sub</span><span>Dataflow</span><span>Cloud Composer</span><span>Cloud IAM</span><span>Cloud Interconnect / VPN</span><span>Looker Studio</span><span>BigQuery ML</span>
+        </div>
+
+        <h5>Problem Statement</h5>
+        <p>DfE's Skills Group Adult Education Service is responsible for tracking and tracing attendance across colleges and institutions delivering adult education throughout England. This was previously handled by a patchwork of small, single-purpose legacy applications — some pushing data via API, others relying on manual email submission to DfE. When the department decided to consolidate onto BigQuery as its single data warehouse given the scale of the data involved, those ageing on-premise applications began to fail under the demands of pushing data reliably into BigQuery. Compounding this, the rest of the DfE estate runs on Azure and SQL Server, so every interaction between that Microsoft-based estate and Google BigQuery was a recurring source of integration failures, data loss risk and operational firefighting.</p>
+
+        <h5>Solution</h5>
+        <p>Designed and delivered a single digital platform enabling every college and institution across England to enter and share attendance data with DfE through one consistent channel — underpinned by an end-to-end Google Cloud enterprise architecture spanning both PaaS and IaaS. The platform replaced the fragmented mini-application estate with a governed ingestion layer, phased out manual email submission, and gave residual Azure SQL systems a managed, secure hybrid connectivity path into the new GCP-native pipeline — removing the cross-cloud friction that had been undermining data quality and reliability.</p>
+
+        <h5>Target GCP Architecture — Detailed Design</h5>
+        <p>Streamlined, icon-annotated architecture spanning data sources, the PaaS-based digital system, a dedicated real-time data ingress layer, warehousing and consumption — with security applied as a common layer across the whole tenant.</p>
+        <div class="activity-wrap">
+<svg viewBox="0 0 1150 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skills Group Adult Attendance target GCP architecture">
+              <defs>
+  <marker id="saa-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#1F5B73" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="saa-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#EA4335" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+
+  <symbol id="ic-school" viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5z" fill="#fff"/><path d="M6 11v6c0 1.5 2.7 3 6 3s6-1.5 6-3v-6" fill="none" stroke="#fff" stroke-width="1.6"/></symbol>
+  <symbol id="ic-api" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M7 12h2M12 12h2M17 12h1" stroke="#fff" stroke-width="1.8"/></symbol>
+  <symbol id="ic-run" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M10 8l6 4-6 4V8z" fill="#fff"/></symbol>
+  <symbol id="ic-func" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="#fff"/></symbol>
+  <symbol id="ic-apigee" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="#fff"/><circle cx="12" cy="12" r="7" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="10.5" fill="none" stroke="#fff" stroke-width="1.3" opacity="0.7"/></symbol>
+  <symbol id="ic-pubsub" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.2" fill="#fff"/><path d="M10 12h4M13 8l3 4-3 4" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-bq" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.6" fill="#fff"/><path d="M5 6v12c0 1.5 3.1 2.6 7 2.6s7-1.1 7-2.6V6" fill="none" stroke="#fff" stroke-width="1.6"/></symbol>
+  <symbol id="ic-storage" viewBox="0 0 24 24"><path d="M5 8h14l-1.5 11a2 2 0 01-2 1.8h-7a2 2 0 01-2-1.8L5 8z" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M4 8h16l-1-3H5l-1 3z" fill="#fff"/></symbol>
+  <symbol id="ic-kms" viewBox="0 0 24 24"><circle cx="8" cy="8" r="4" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M11 11l9 9M17 17l2.5-2.5M14.5 14.5L17 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="ic-armor" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z" fill="#fff"/></symbol>
+  <symbol id="ic-cdn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#fff" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="#fff" stroke-width="1.4"/><path d="M3 12h18" stroke="#fff" stroke-width="1.4"/></symbol>
+  <symbol id="ic-looker" viewBox="0 0 24 24"><rect x="4" y="12" width="3" height="8" fill="#fff"/><rect x="10" y="7" width="3" height="13" fill="#fff"/><rect x="16" y="3" width="3" height="17" fill="#fff"/></symbol>
+  <symbol id="ic-flow" viewBox="0 0 24 24"><circle cx="4" cy="12" r="2.2" fill="#fff"/><circle cx="12" cy="6" r="2.2" fill="#fff"/><circle cx="12" cy="18" r="2.2" fill="#fff"/><circle cx="20" cy="12" r="2.2" fill="#fff"/><path d="M6 12h4M13.5 8l5 3M13.5 16l5-3" stroke="#fff" stroke-width="1.5"/></symbol>
+  <symbol id="ic-composer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="ic-monitor" viewBox="0 0 24 24"><path d="M3 14a9 9 0 0118 0" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M12 14l4-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="1.6" fill="#fff"/></symbol>
+</defs>
+              <rect x="0" y="0" width="1150" height="1040" fill="#FFFFFF"/>
+              <rect x="10" y="10" width="1130" height="1020" rx="10" fill="#FAFAFA" stroke="#C9C3B6" stroke-width="1.5"/>
+              <rect x="28" y="24" width="22" height="22" rx="5" fill="#4285F4"/><use href="#ic-run" x="31" y="27" width="16" height="16"/>
+              <text x="58" y="40" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="700" fill="#4285F4" text-anchor="start" >DfE GCP Tenant — single project / VPC (europe-west2)</text>
+              <rect x="28" y="58" width="1094" height="70" rx="8" fill="#F6EFFC" stroke="#7b1fa2" stroke-width="2"/>
+              <rect x="40" y="68" width="20" height="20" rx="5" fill="#7b1fa2"/><use href="#ic-kms" x="43" y="71" width="14" height="14"/>
+              <text x="68" y="83" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#7b1fa2" text-anchor="start" >Security Layer — common across all layers</text>
+              <rect x="40" y="100" width="18" height="18" rx="5" fill="#7b1fa2"/><use href="#ic-kms" x="43" y="103" width="12" height="12"/>
+              <text x="64" y="113" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="600" fill="#000000" text-anchor="start" >Cloud KMS (CMEK) — encryption at rest &amp; in transit</text>
+              <rect x="300" y="100" width="18" height="18" rx="5" fill="#7b1fa2"/><use href="#ic-armor" x="303" y="103" width="12" height="12"/>
+              <text x="324" y="113" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="600" fill="#000000" text-anchor="start" >Cloud Armor — WAF &amp; DDoS protection</text>
+              <rect x="560" y="100" width="18" height="18" rx="5" fill="#7b1fa2"/><use href="#ic-cdn" x="563" y="103" width="12" height="12"/>
+              <text x="584" y="113" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="600" fill="#000000" text-anchor="start" >Cloud CDN — edge caching &amp; delivery</text>
+              <rect x="820" y="100" width="18" height="18" rx="5" fill="#7b1fa2"/><use href="#ic-run" x="823" y="103" width="12" height="12"/>
+              <text x="844" y="113" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="600" fill="#000000" text-anchor="start" >Cloud IAM — least-privilege access control</text>
+              <rect x="28" y="146" width="1094" height="90" rx="8" fill="#F5F5F5" stroke="#999999" stroke-width="1.4"/>
+              <rect x="40" y="156" width="20" height="20" rx="5" fill="#333333"/><use href="#ic-school" x="43" y="159" width="14" height="14"/>
+              <text x="68" y="171" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#333333" text-anchor="start" >Data sources — Schools &amp; Colleges, England-wide</text>
+              <rect x="40" y="188" width="1070" height="38" rx="6" fill="#FFFFFF" stroke="#999999" stroke-width="1.2"/>
+              <text x="50" y="210" font-family="IBM Plex Sans, sans-serif" font-size="9.6" font-weight="600" fill="#000000" text-anchor="start" >School / College MIS &amp; attendance systems — daily automated API push, plus manual update via the digital system portal</text>
+              <line x1="585" y1="236" x2="585" y2="260" stroke="#1F5B73" stroke-width="1.8" marker-end="url(#saa-arrow)"/>
+              <text x="600" y="250" font-family="IBM Plex Sans, sans-serif" font-size="8.6" font-weight="400" fill="#000000" text-anchor="start" font-style="italic">daily API push / portal update</text>
+              <rect x="28" y="266" width="1094" height="150" rx="8" fill="#EAF2FE" stroke="#4285F4" stroke-width="2"/>
+              <rect x="40" y="276" width="20" height="20" rx="5" fill="#4285F4"/><use href="#ic-run" x="43" y="279" width="14" height="14"/>
+              <text x="68" y="291" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#4285F4" text-anchor="start" >Digital System — GCP PaaS layer</text>
+              <text x="68" y="306" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="400" fill="#000000" text-anchor="start" font-style="italic">Single system of engagement for every school &amp; college to submit or update attendance data</text>
+              <rect x="40" y="322" width="344" height="82" rx="6" fill="#FFFFFF" stroke="#4285F4" stroke-width="1.3"/>
+              <rect x="50" y="332" width="20" height="20" rx="5" fill="#4285F4"/><use href="#ic-run" x="53" y="335" width="14" height="14"/>
+              <text x="78" y="347" font-family="IBM Plex Sans, sans-serif" font-size="10.2" font-weight="700" fill="#000000" text-anchor="start" >Cloud Run</text>
+              <text x="50" y="366.0" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Containerised portal &amp; submission services; auto-scaling, fully managed</text>
+              <rect x="404" y="322" width="344" height="82" rx="6" fill="#FFFFFF" stroke="#4285F4" stroke-width="1.3"/>
+              <rect x="414" y="332" width="20" height="20" rx="5" fill="#4285F4"/><use href="#ic-api" x="417" y="335" width="14" height="14"/>
+              <text x="442" y="347" font-family="IBM Plex Sans, sans-serif" font-size="10.2" font-weight="700" fill="#000000" text-anchor="start" >API Gateway</text>
+              <text x="414" y="366.0" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Publishes &amp; secures REST endpoints for MIS integrations</text>
+              <rect x="768" y="322" width="344" height="82" rx="6" fill="#FFFFFF" stroke="#4285F4" stroke-width="1.3"/>
+              <rect x="778" y="332" width="20" height="20" rx="5" fill="#4285F4"/><use href="#ic-func" x="781" y="335" width="14" height="14"/>
+              <text x="806" y="347" font-family="IBM Plex Sans, sans-serif" font-size="10.2" font-weight="700" fill="#000000" text-anchor="start" >Cloud Functions</text>
+              <text x="778" y="366.0" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Event-driven validation, notifications &amp; lightweight transforms</text>
+              <line x1="585" y1="416" x2="585" y2="440" stroke="#1F5B73" stroke-width="1.8" marker-end="url(#saa-arrow)"/>
+              <rect x="28" y="446" width="1094" height="150" rx="8" fill="#FFF3F0" stroke="#EA4335" stroke-width="2"/>
+              <rect x="40" y="456" width="20" height="20" rx="5" fill="#EA4335"/><use href="#ic-pubsub" x="43" y="459" width="14" height="14"/>
+              <text x="68" y="471" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#EA4335" text-anchor="start" >Data Ingress Layer — real-time ingestion from outside the tenant</text>
+              <rect x="40" y="502" width="344" height="82" rx="6" fill="#FFFFFF" stroke="#EA4335" stroke-width="1.3"/>
+              <rect x="50" y="512" width="20" height="20" rx="5" fill="#EA4335"/><use href="#ic-apigee" x="53" y="515" width="14" height="14"/>
+              <text x="78" y="527" font-family="IBM Plex Sans, sans-serif" font-size="10.2" font-weight="700" fill="#000000" text-anchor="start" >Apigee</text>
+              <text x="50" y="546.0" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >API management gateway — throttling, quota, contract &amp; version control for every MIS integration</text>
+              <rect x="404" y="502" width="344" height="82" rx="6" fill="#FFFFFF" stroke="#EA4335" stroke-width="1.3"/>
+              <rect x="414" y="512" width="20" height="20" rx="5" fill="#EA4335"/><use href="#ic-pubsub" x="417" y="515" width="14" height="14"/>
+              <text x="442" y="527" font-family="IBM Plex Sans, sans-serif" font-size="10.2" font-weight="700" fill="#000000" text-anchor="start" >Cloud Pub/Sub</text>
+              <text x="414" y="546.0" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Real-time event stream absorbing bursty daily submissions; at-least-once delivery, ordering keys</text>
+              <rect x="768" y="502" width="344" height="82" rx="6" fill="#FFFFFF" stroke="#EA4335" stroke-width="1.3"/>
+              <rect x="778" y="512" width="20" height="20" rx="5" fill="#EA4335"/><use href="#ic-flow" x="781" y="515" width="14" height="14"/>
+              <text x="806" y="527" font-family="IBM Plex Sans, sans-serif" font-size="10.2" font-weight="700" fill="#000000" text-anchor="start" >Dataflow</text>
+              <text x="778" y="546.0" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Streaming pipeline — validates, de-duplicates &amp; conforms records before the final push to BigQuery</text>
+              <line x1="404" y1="543" x2="424" y2="543" stroke="#EA4335" stroke-width="1.8" marker-end="url(#saa-arrow-red)"/>
+              <line x1="768" y1="543" x2="788" y2="543" stroke="#EA4335" stroke-width="1.8" marker-end="url(#saa-arrow-red)"/>
+              <line x1="585" y1="596" x2="585" y2="620" stroke="#1F5B73" stroke-width="1.8" marker-end="url(#saa-arrow)"/>
+              <text x="600" y="610" font-family="IBM Plex Sans, sans-serif" font-size="8.6" font-weight="400" fill="#000000" text-anchor="start" font-style="italic">final push to BigQuery</text>
+              <rect x="28" y="626" width="1094" height="120" rx="8" fill="#EAFAF0" stroke="#34A853" stroke-width="2"/>
+              <rect x="40" y="636" width="20" height="20" rx="5" fill="#34A853"/><use href="#ic-bq" x="43" y="639" width="14" height="14"/>
+              <text x="68" y="651" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#2F7A57" text-anchor="start" >Storage &amp; warehouse layer</text>
+              <rect x="40" y="668" width="524" height="66" rx="6" fill="#FFFFFF" stroke="#34A853" stroke-width="1.3"/>
+              <rect x="50" y="678" width="20" height="20" rx="5" fill="#34A853"/><use href="#ic-bq" x="53" y="681" width="14" height="14"/>
+              <text x="78" y="693" font-family="IBM Plex Sans, sans-serif" font-size="10" font-weight="700" fill="#000000" text-anchor="start" >BigQuery — central data warehouse</text>
+              <text x="50" y="712" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Partitioned/clustered attendance tables; single source of truth</text>
+              <text x="50" y="725" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >replacing the fragmented legacy application estate</text>
+              <rect x="584" y="668" width="524" height="66" rx="6" fill="#FFFFFF" stroke="#34A853" stroke-width="1.3"/>
+              <rect x="594" y="678" width="20" height="20" rx="5" fill="#34A853"/><use href="#ic-storage" x="597" y="681" width="14" height="14"/>
+              <text x="622" y="693" font-family="IBM Plex Sans, sans-serif" font-size="10" font-weight="700" fill="#000000" text-anchor="start" >Cloud Storage — curated/archive</text>
+              <text x="594" y="712" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >Long-term, lifecycle-managed retention of raw &amp;</text>
+              <text x="594" y="725" font-family="IBM Plex Sans, sans-serif" font-size="8.8" font-weight="400" fill="#000000" text-anchor="start" >curated attendance data for audit-grade traceability</text>
+              <line x1="585" y1="746" x2="585" y2="770" stroke="#1F5B73" stroke-width="1.8" marker-end="url(#saa-arrow)"/>
+              <rect x="28" y="776" width="1094" height="120" rx="8" fill="#F5EEFC" stroke="#6a1b9a" stroke-width="2"/>
+              <rect x="40" y="786" width="20" height="20" rx="5" fill="#6a1b9a"/><use href="#ic-looker" x="43" y="789" width="14" height="14"/>
+              <text x="68" y="801" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="700" fill="#6a1b9a" text-anchor="start" >Consumption &amp; reporting layer</text>
+              <rect x="40" y="818" width="344" height="66" rx="6" fill="#FFFFFF" stroke="#6a1b9a" stroke-width="1.3"/>
+              <rect x="50" y="828" width="18" height="18" rx="5" fill="#6a1b9a"/><use href="#ic-looker" x="53" y="831" width="12" height="12"/>
+              <text x="74" y="842" font-family="IBM Plex Sans, sans-serif" font-size="9.8" font-weight="700" fill="#000000" text-anchor="start" >Looker Studio</text>
+              <text x="50" y="858" font-family="IBM Plex Sans, sans-serif" font-size="8.6" font-weight="400" fill="#000000" text-anchor="start" >Attendance dashboards for DfE analysts &amp; caseworkers</text>
+              <rect x="404" y="818" width="344" height="66" rx="6" fill="#FFFFFF" stroke="#6a1b9a" stroke-width="1.3"/>
+              <rect x="414" y="828" width="18" height="18" rx="5" fill="#6a1b9a"/><use href="#ic-bq" x="417" y="831" width="12" height="12"/>
+              <text x="438" y="842" font-family="IBM Plex Sans, sans-serif" font-size="9.8" font-weight="700" fill="#000000" text-anchor="start" >BigQuery ML</text>
+              <text x="414" y="858" font-family="IBM Plex Sans, sans-serif" font-size="8.6" font-weight="400" fill="#000000" text-anchor="start" >Non-attendance trend detection &amp; safeguarding flags</text>
+              <rect x="768" y="818" width="344" height="66" rx="6" fill="#FFFFFF" stroke="#6a1b9a" stroke-width="1.3"/>
+              <rect x="778" y="828" width="18" height="18" rx="5" fill="#6a1b9a"/><use href="#ic-api" x="781" y="831" width="12" height="12"/>
+              <text x="802" y="842" font-family="IBM Plex Sans, sans-serif" font-size="9.8" font-weight="700" fill="#000000" text-anchor="start" >DfE downstream systems</text>
+              <text x="778" y="858" font-family="IBM Plex Sans, sans-serif" font-size="8.6" font-weight="400" fill="#000000" text-anchor="start" >Funding, safeguarding &amp; policy teams — API/export</text>
+              <rect x="28" y="912" width="1094" height="66" rx="8" fill="#F3F1EB" stroke="#8C5A1C" stroke-width="1.6"/>
+              <rect x="40" y="922" width="20" height="20" rx="5" fill="#8C5A1C"/><use href="#ic-monitor" x="43" y="925" width="14" height="14"/>
+              <text x="68" y="937" font-family="IBM Plex Sans, sans-serif" font-size="10.5" font-weight="700" fill="#8C5A1C" text-anchor="start" >Monitoring &amp; operations — cross-cutting</text>
+              <text x="40" y="958" font-family="IBM Plex Sans, sans-serif" font-size="9.3" font-weight="400" fill="#000000" text-anchor="start" >Cloud Monitoring · Cloud Logging · Error Reporting · Alerting · per-school/college SLA dashboards</text>
+              </svg>
+        </div>
+
+        <details class="techdrop">
+          <summary><svg class="icon"><use href="#i-database"/></svg>Architecture — detailed step breakdown</summary>
+          <div class="techdrop-body">
+            <table class="data-table">
+              <tr><th>Step</th><th>Flow</th><th>Technical detail</th></tr>
+              <tr><td>1</td><td>School/college MIS → Digital System</td><td>Daily automated REST/JSON API push from each institution's MIS or attendance system; manual update also available via the Cloud Run-hosted portal</td></tr>
+              <tr><td>2</td><td>Digital System (PaaS)</td><td>Cloud Run hosts the portal and submission services; API Gateway publishes/secures REST endpoints for MIS integrations; Cloud Functions handle event-driven validation and notifications</td></tr>
+              <tr><td>3</td><td>Digital System → Data Ingress Layer</td><td>Requests pass through the security layer (Cloud Armor, Cloud CDN) before reaching Apigee</td></tr>
+              <tr><td>4</td><td>Apigee → Cloud Pub/Sub</td><td>Apigee enforces API management — throttling, quota, contract and version control — then hands off to Pub/Sub as a real-time event stream</td></tr>
+              <tr><td>5</td><td>Cloud Pub/Sub → Dataflow</td><td>At-least-once delivery with ordering keys per institution; Dataflow consumes the stream, validates schema, de-duplicates and conforms records</td></tr>
+              <tr><td>6</td><td>Dataflow → BigQuery</td><td>Final push loads curated records into partitioned, clustered attendance tables — the single source of truth replacing the legacy application estate</td></tr>
+              <tr><td>7</td><td>BigQuery → Cloud Storage (archive)</td><td>Raw and curated data retained under lifecycle policies for audit-grade traceability and cost control</td></tr>
+              <tr><td>8</td><td>BigQuery → Looker Studio / BigQuery ML</td><td>Dashboards for DfE analysts and caseworkers; ML models flag non-attendance trends and safeguarding risks</td></tr>
+              <tr><td>9</td><td>BigQuery → DfE downstream systems</td><td>Funding, safeguarding and policy teams consume curated data via export or API</td></tr>
+              <tr><td>10</td><td>Cross-cutting: Security Layer</td><td>Cloud KMS (CMEK), Cloud Armor (WAF/DDoS), Cloud CDN and Cloud IAM apply as a common layer across every stage — data source, digital system, ingress, warehouse and consumption</td></tr>
+              <tr><td>11</td><td>Cross-cutting: Monitoring &amp; operations</td><td>Cloud Monitoring, Cloud Logging, Error Reporting and Alerting provide per-institution SLA visibility across the whole pipeline</td></tr>
+            </table>
+          </div>
+        </details>
+
+        <h5>Service Blueprint</h5>
+        <p>End-to-end view across customer actions, the digital platform (frontstage), GCP processing (backstage) and the supporting systems that make each stage possible.</p>
+        <div class="blueprint-wrap">
+  <table class="blueprint-table">
+    <thead>
+      <tr>
+        <th class="bp-corner">Lane</th>
+        <th>1. Submit Attendance Data</th>
+        <th>2. Authenticate &amp; Validate</th>
+        <th>3. Ingest &amp; Stream</th>
+        <th>4. Transform &amp; Load</th>
+        <th>5. Warehouse &amp; Govern</th>
+        <th>6. Report &amp; Act</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bp-lane bp-customer">
+        <td class="bp-label"><svg class="icon"><use href="#i-users"/></svg>College / Institution Actions</td>
+        <td>Staff log in to the portal or trigger an automated API push from the college MIS</td>
+        <td>User/service authenticates via IAM / DfE Entra ID SSO</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Regional lead reviews attendance dashboard; escalates non-attendance cases</td>
+      </tr>
+      <tr class="bp-lane bp-frontstage">
+        <td class="bp-label"><svg class="icon"><use href="#i-layers"/></svg>Frontstage — Digital Platform</td>
+        <td>Web portal / API endpoint accepts CSV, XML or JSON attendance records; SFTP bridge for late adopters</td>
+        <td>API Gateway enforces schema contract; rejects malformed submissions with actionable error messages</td>
+        <td>Confirmation receipt issued; submission reference number returned to sender</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Looker Studio dashboard renders attendance trends, filters by college/region</td>
+      </tr>
+      <tr class="bp-lane bp-backstage">
+        <td class="bp-label"><svg class="icon"><use href="#i-cpu"/></svg>Backstage — GCP Processing</td>
+        <td>Cloud Storage lands raw file in versioned, encrypted bucket</td>
+        <td>Cloud Functions parses inbound file/email fallback; Pub/Sub emits ingestion event</td>
+        <td>Dataflow consumes event, validates schema, de-duplicates, masks PII</td>
+        <td>Cloud Composer orchestrates DAG: transform → conform → load to BigQuery</td>
+        <td>BigQuery applies partitioning, clustering, column-level security &amp; row policies</td>
+        <td>BigQuery ML flags non-attendance outliers; results pushed to Looker Studio</td>
+      </tr>
+      <tr class="bp-lane bp-support">
+        <td class="bp-label"><svg class="icon"><use href="#i-shield"/></svg>Support Processes &amp; Systems</td>
+        <td>Compute Engine adapter pool handles residual SFTP/email traffic during phased onboarding</td>
+        <td>Cloud IAM, VPC Service Controls and Cloud Armor enforce zero-trust access boundary</td>
+        <td>Cloud Monitoring/Logging track per-college feed SLAs; alerts on missed submissions</td>
+        <td>Cloud KMS encrypts data at rest; Secret Manager holds pipeline credentials</td>
+        <td>Cloud Audit Logs record every read/write for DfE compliance &amp; audit</td>
+        <td>DfE funding, safeguarding &amp; policy teams consume curated exports/APIs</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="panel" id="panel-experience">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-briefcase"/></svg><h2 class="sheet-title">Experience</h2></div>
+    <p class="sheet-desc">Employment record — from software engineer to chief solutions architect across UK public sector and global enterprise programmes.</p>
+    <div class="dimline"></div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#1F5B73">CTS</span>
+          <div>
+            <h3>Senior Solutions Architect (Technology &amp; Pre-Sales)</h3>
+            <div class="co">Cognizant · London, UK</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>April 2022 – Present</span>
+        <ul>
+          <li>Leading architecture practice for DEFRA &amp; DfE, covering end-to-end implementations, on-prem to cloud migrations, and data/AI systems.</li>
+          <li>Delivered 40% infrastructure cost reduction and 25% reliability improvement for data-intensive services.</li>
+          <li>Defined architecture continuum, repositories, and governance for data, GenAI &amp; ML solutions.</li>
+          <li>Drove pre-sales solution architecture, RFP/RFI storyboarding, and commercial alignment.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#1F5B73">CTS</span>
+          <div>
+            <h3>Solutions Architect</h3>
+            <div class="co">Cognizant · Kolkata, India</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>June 2019 – April 2022</span>
+        <ul>
+          <li>Delivered cloud and data architectures for a major US financial client, improving reliability and scalability by 30%.</li>
+          <li>Led AWS migration of legacy databases to cloud-native platforms.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#2F7A57">OPT</span>
+          <div>
+            <h3>Senior Technical Architect</h3>
+            <div class="co">OnProcess Technology (Part of Accenture) · Kolkata, India</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>Oct 2013 – Mar 2019</span>
+        <ul>
+          <li>Headed architecture for supply chain &amp; reverse logistics platforms; reduced code review time by 20%.</li>
+          <li>Architected Azure cloud-native applications across .NET, Angular/React, SQL.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#8C5A1C">NEX</span>
+          <div>
+            <h3>Technical Architect</h3>
+            <div class="co">Nexval Inc.</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>Apr 2013 – Oct 2013</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#B0432E">WIP</span>
+          <div>
+            <h3>Project Lead</h3>
+            <div class="co">Wipro</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>Mar 2012 – Mar 2013</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#4C7E90">CAP</span>
+          <div>
+            <h3>Technical Lead</h3>
+            <div class="co">Capgemini</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>Nov 2010 – Mar 2012</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#6B665D">NTT</span>
+          <div>
+            <h3>Senior Software Engineer</h3>
+            <div class="co">NTT Data</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>Jan 2010 – Nov 2010</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-avatar" style="background:#C17A2E">VS</span>
+          <div>
+            <h3>Software Engineer</h3>
+            <div class="co">Vande Softech Pvt Ltd</div>
+          </div>
+        </div>
+        <span class="dur"><svg class="icon"><use href="#i-clock"/></svg>May 2005 – Jan 2010</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOLUTION ARCHITECTURE (ADRs) ===================== -->
+  <section class="panel" id="panel-solution">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-git"/></svg><h2 class="sheet-title">Solution Architecture</h2></div>
+    <p class="sheet-desc">Case studies &amp; Architecture Decision Records spanning DfE's ESFA and DDTi programmes — choreography, CQRS, orchestration, pipes &amp; filter, scatter &amp; gather, saga, and transactional outbox patterns.</p>
+    <div class="dimline"></div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-001 — Choreography Pattern for Calculate Funding Service</h3><span class="adr-app">Application: CFS</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>CFS ingests high-volume datasets from multiple DfE finance sub-domains (Schools, LAs, Institutions, Funding Lines).</li>
+            <li>Data arrives asynchronously via APIs, batch feeds and event streams.</li>
+            <li>Funding rules must execute independently across bounded contexts.</li>
+            <li>Tight coupling would create bottlenecks during peak census periods.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Adopt a fully event-driven Choreography Pattern where each microservice publishes and reacts to domain events without a central orchestrator.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Increased complexity in event versioning and schema evolution.</li>
+            <li>Requires robust idempotency and replay handling.</li>
+            <li>Provides a highly scalable, resilient, decoupled funding calculation engine.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Enables autonomous microservices to process funding data independently.</li>
+            <li>Supports parallel execution of funding workflows.</li>
+            <li>Eliminates synchronous dependencies and reduces cascading failures.</li>
+            <li>Allows horizontal scaling and compensating events for eventual consistency.</li>
+          </ul>
+          <div class="adr-img">
+            <img src="https://priyaanka.blob.core.windows.net/arinportfolio/Choreography%20Pattern.png" alt="Choreography pattern diagram">
+            <div class="cap">Fig. A4.1 — Choreography pattern</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-002 — CQRS + Materialised Views for Funding Data Service</h3><span class="adr-app">Application: FDS, DfE ESFA</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>FDS handles millions of records from Schools, LAs and Institutions.</li>
+            <li>Write workloads conflict with read workloads.</li>
+            <li>Downstream systems require customised datasets and high-performance queries.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Implement CQRS with Materialised Views to separate write and read concerns.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Requires additional storage for materialised views.</li>
+            <li>Eventual consistency must be communicated to consumers.</li>
+            <li>Improves performance and scalability for funding analytics.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Write model optimised for ingestion and transactional consistency.</li>
+            <li>Read model optimised for analytical queries and downstream reporting.</li>
+            <li>Materialised views allow denormalised, indexed datasets; data sync ensures eventual consistency.</li>
+          </ul>
+          <div class="adr-img">
+            <a href="https://priyaanka.blob.core.windows.net/arinportfolio/CQRS_Materialized%20Pattern.png" target="_blank" rel="noopener">
+              <img src="https://priyaanka.blob.core.windows.net/arinportfolio/CQRS_Materialized%20Pattern.png" alt="CQRS and materialised views">
+            </a>
+            <div class="cap">Fig. A4.2 — CQRS &amp; materialised views (click to enlarge)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-003 — Execution Orchestration Pattern for Funding Contracting Service</h3><span class="adr-app">Application: FCS, DfE ESFA</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>FCS manages dynamic workflows: contract creation, amendments, payments, validations.</li>
+            <li>Workflows involve multiple independent services with different SLAs.</li>
+            <li>Requires strict sequencing, retry logic and state management.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Adopt a centralised Execution Orchestration Pattern using Azure App Services, Function Apps and worker roles.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Orchestrator becomes a critical component requiring HA.</li>
+            <li>Increased complexity in workflow modelling.</li>
+            <li>Provides a robust, SLA-driven contracting platform.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Provides deterministic workflow sequencing and centralised error handling.</li>
+            <li>Supports dynamic branching and compensating actions.</li>
+            <li>Enables independent scaling of contracting sub-services and consistent lifecycle management.</li>
+          </ul>
+          <div class="adr-img">
+            <a href="https://priyaanka.blob.core.windows.net/arinportfolio/ExecutionOrchestrationPattern.png" target="_blank" rel="noopener">
+              <img src="https://priyaanka.blob.core.windows.net/arinportfolio/ExecutionOrchestrationPattern.png" alt="Execution orchestration pattern">
+            </a>
+            <div class="cap">Fig. A4.3 — Execution orchestration pattern (click to enlarge)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-004 — Pipes &amp; Filter Pattern for DfE Connect &amp; TSI</h3><span class="adr-app">Applications: DfE Connect, TSI</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>Multiple departments publish real-time data.</li>
+            <li>DfE Connect must ingest, validate, enrich, and publish data to a central DB.</li>
+            <li>TSI must track, trace, and correct queue-level issues.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Implement a Pipes &amp; Filter architecture with message-broker-driven filter stages.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Requires robust monitoring and DLQ management.</li>
+            <li>Increased operational complexity across pipelines.</li>
+            <li>Provides high throughput, resilience and modular data processing.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Each filter stage runs independently with queues for back-pressure and fault isolation.</li>
+            <li>TSI provides operational visibility and corrective tooling.</li>
+            <li>Enables real-time, multi-threaded data processing across departments.</li>
+          </ul>
+          <div class="adr-img">
+            <a href="https://priyaanka.blob.core.windows.net/arinportfolio/PipesFilter.png" target="_blank" rel="noopener">
+              <img src="https://priyaanka.blob.core.windows.net/arinportfolio/PipesFilter.png" alt="Pipes and filter pattern">
+            </a>
+            <div class="cap">Fig. A4.4 — Pipes &amp; Filter pattern (click to enlarge)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-005 — Scatter &amp; Gather Pattern for Data Attendance Portal</h3><span class="adr-app">Application: DDTi</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>Attendance data arrives from thousands of sources.</li>
+            <li>Processing must be parallelised to meet regulatory deadlines.</li>
+            <li>Aggregated datasets feed downstream analytics and compliance services.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Adopt a Scatter &amp; Gather architecture using Service Bus Topics and distributed workers.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Requires careful correlation ID management.</li>
+            <li>Aggregator must handle partial failures gracefully.</li>
+            <li>Enables scalable, distributed attendance processing.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Dispatcher scatters payloads across workers; workers process in parallel; aggregator merges results.</li>
+            <li>Supports massive concurrency and high-volume ingestion.</li>
+          </ul>
+          <div class="adr-img">
+            <a href="https://priyaanka.blob.core.windows.net/arinportfolio/Scatter_Gatter.png" target="_blank" rel="noopener">
+              <img src="https://priyaanka.blob.core.windows.net/arinportfolio/Scatter_Gatter.png" alt="Scatter and gather pattern">
+            </a>
+            <div class="cap">Fig. A4.5 — Scatter &amp; Gather pattern (click to enlarge)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-006 — Saga Pattern for CFS &amp; FCS</h3><span class="adr-app">Applications: CFS, FCS</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>Funding lifecycle spans multiple services: calculation → contracting → release.</li>
+            <li>Requires distributed transaction management without 2PC.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Implement a hybrid Saga architecture combining orchestration + choreography.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Requires careful modelling of compensating transactions.</li>
+            <li>Eventual consistency must be accepted by stakeholders.</li>
+            <li>Provides a resilient, distributed funding lifecycle engine.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Local transactions per service ensure autonomy; compensating actions provide rollback safety.</li>
+            <li>Outbox + idempotency ensures reliable event publishing.</li>
+          </ul>
+          <div class="adr-img">
+            <a href="https://priyaanka.blob.core.windows.net/arinportfolio/dfe_esfa_saga_architecture.png" target="_blank" rel="noopener">
+              <img src="https://priyaanka.blob.core.windows.net/arinportfolio/dfe_esfa_saga_architecture.png" alt="Saga architecture">
+            </a>
+            <div class="cap">Fig. A4.6 — Saga architecture (click to enlarge)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adr">
+      <div class="adr-head"><h3>ADR-007 — Transactional Outbox Pattern for Digital Forms &amp; Adults Attendance</h3><span class="adr-app">Applications: Digital Forms (ESFA), Adults Attendance Portal (DDTi)</span></div>
+      <div class="adr-body">
+        <div class="adr-col">
+          <h6>Context</h6>
+          <ul>
+            <li>Both applications require reliable event publishing and downstream dataset generation.</li>
+            <li>Dual-write inconsistencies previously caused data loss and audit failures.</li>
+          </ul>
+          <h6>Decision</h6>
+          <div class="decision">Implement the Transactional Outbox Pattern with sequenced event dispatch.</div>
+          <h6>Consequences</h6>
+          <ul>
+            <li>Requires additional storage and polling infrastructure.</li>
+            <li>Slight delay introduced due to asynchronous dispatch.</li>
+            <li>Provides guaranteed delivery, ordering and auditability.</li>
+          </ul>
+        </div>
+        <div class="adr-col">
+          <h6>Rationale</h6>
+          <ul>
+            <li>Ensures atomic writes between main table and outbox; SequenceID guarantees ordering.</li>
+            <li>Enables exactly-once processing and audit-grade traceability.</li>
+          </ul>
+          <div class="adr-img">
+            <img src="https://priyaanka.blob.core.windows.net/arinportfolio/TransactionalOutBox.png" alt="Transactional outbox pattern">
+            <div class="cap">Fig. A4.7 — Transactional Outbox pattern</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="color:var(--text-dim);font-size:12.5px;margin-top:10px;">Implementation notes, diagrams and referenced design documents are maintained in the architecture repository and linked from each ADR for traceability.</p>
+  </section>
+
+  <!-- ===================== ENTERPRISE ARCHITECTURE ===================== -->
+  <section class="panel" id="panel-enterprise">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-grid"/></svg><h2 class="sheet-title">Enterprise Architecture Portfolio — UK Public Sector</h2></div>
+    <p class="sheet-desc">Enabling UK Public Sector assignments to operate a unified, scalable, event-driven &amp; domain-driven data-centric digital ecosystem — accurate funding, compliant contracting, high-quality attendance data, and cross-department interoperability, powered by modern cloud patterns and TOGAF-aligned governance.</p>
+    <div class="dimline"></div>
+
+    <div class="grid2" style="margin-bottom:30px;">
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-target"/></svg>Technology &amp; Business Drivers</h4>
+        <ul>
+          <li>National-scale funding accuracy and transparency</li>
+          <li>Regulatory compliance for attendance and contracting</li>
+          <li>Cross-department data sharing (Finance, HR, Compliance)</li>
+          <li>Operational resilience during peak periods (census, contracting cycles)</li>
+          <li>Auditability and traceability for public accountability</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4><svg class="icon"><use href="#i-award"/></svg>Value Proposition</h4>
+        <ul>
+          <li>Faster funding cycles</li>
+          <li>Reliable contracting workflows</li>
+          <li>High-quality attendance datasets</li>
+          <li>Cross-department interoperability</li>
+          <li>Audit-grade traceability</li>
+          <li>Scalable, resilient national services</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 class="mono" style="color:#000000;text-transform:uppercase;font-size:14.5px;letter-spacing:.08em;margin-bottom:16px;"><svg class="icon"><use href="#i-grid"/></svg>Target Architecture Themes</h4>
+    <div class="grid2" style="margin-bottom:30px;">
+      <div class="card"><h4><svg class="icon"><use href="#i-briefcase"/></svg>Business Architecture</h4><p>Domain-driven funding, contracting, attendance and regulatory workflows. Autonomous bounded contexts with clear ownership. SLA-driven orchestration for critical processes.</p></div>
+      <div class="card"><h4><svg class="icon"><use href="#i-database"/></svg>Data Architecture</h4><p>Data as an enterprise asset. High-quality, validated, enriched datasets. Event-driven pipelines with lineage, auditability and replay. CQRS + materialised views for analytics at scale.</p></div>
+      <div class="card"><h4><svg class="icon"><use href="#i-grid"/></svg>Application Architecture</h4><p>Microservices aligned to business domains. Event-driven choreography (CFS), orchestration (FCS), hybrid saga (CFS/FCS). Modular pipelines (DfE Connect, TSI, DDTi). Reliable event publishing via transactional outbox.</p></div>
+      <div class="card"><h4><svg class="icon"><use href="#i-cpu"/></svg>Technology Architecture</h4><p>Azure PaaS (Functions, App Services, Service Bus, Event Grid, Cosmos DB, SQL). Distributed compute for parallel processing. Standardised messaging, monitoring and idempotency frameworks.</p></div>
+    </div>
+
+    <h4 class="mono" style="color:#000000;text-transform:uppercase;font-size:14.5px;letter-spacing:.08em;margin-bottom:10px;"><svg class="icon"><use href="#i-scale"/></svg>Architecture Principles (TOGAF-aligned)</h4>
+    <div class="principles">
+      <span>Boundaryless Information Flow</span><span>Data is an Asset</span><span>Interoperability</span><span>Reuse &amp; Standardisation</span><span>Agility</span><span>Business Continuity</span><span>Technology Independence</span>
+    </div>
+
+    <h4 class="mono" style="color:#000000;text-transform:uppercase;font-size:14.5px;letter-spacing:.08em;margin:34px 0 6px;"><svg class="icon"><use href="#i-clock"/></svg>Portfolio Roadmap — TOGAF ADM Aligned</h4>
+    <div class="phase-grid">
+      <div class="phase"><span class="letter">A</span><svg class="icon phase-icon"><use href="#i-bulb"/></svg><h6>Architecture Vision</h6><p>Define strategic outcomes for funding, contracting, attendance and DEFRA data; establish principles and approve ADR-based pattern library.</p></div>
+      <div class="phase"><span class="letter">B</span><svg class="icon phase-icon"><use href="#i-briefcase"/></svg><h6>Business Architecture</h6><p>Map business capabilities (CFS, FCS, FDS, DDTi, Digital Forms, DEFRA); define bounded contexts and model lifecycles.</p></div>
+      <div class="phase"><span class="letter">C</span><svg class="icon phase-icon"><use href="#i-database"/></svg><h6>Information Systems Architecture</h6><p>Canonical data models, event schemas, lineage, materialised views; apply Choreography, Orchestration, CQRS, Pipes &amp; Filters, Scatter &amp; Gather, Saga, Outbox.</p></div>
+      <div class="phase"><span class="letter">D</span><svg class="icon phase-icon"><use href="#i-cpu"/></svg><h6>Technology Architecture</h6><p>Select Azure PaaS components; define messaging backbone, compute strategy and observability stack.</p></div>
+      <div class="phase"><span class="letter">E</span><svg class="icon phase-icon"><use href="#i-target"/></svg><h6>Opportunities &amp; Solutions</h6><p>Consolidate reusable components; define cross-department integrations and quick wins.</p></div>
+      <div class="phase"><span class="letter">F</span><svg class="icon phase-icon"><use href="#i-git"/></svg><h6>Migration Planning</h6><p>Prioritise by business value and risk; Assessment &amp; Discovery → Design → Modernize → Migration → DEFRA Cloud.</p></div>
+      <div class="phase"><span class="letter">G</span><svg class="icon phase-icon"><use href="#i-shield"/></svg><h6>Implementation Governance</h6><p>ARB oversight, ADR compliance, DevSecOps pipelines with automated policy enforcement.</p></div>
+      <div class="phase"><span class="letter">H</span><svg class="icon phase-icon"><use href="#i-trend"/></svg><h6>Architecture Change Management</h6><p>Continuous improvement of event schemas; versioning strategy and governance for new workloads.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== BID & RFP ===================== -->
+  <section class="panel" id="panel-bid">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-target"/></svg><span class="sheet-num">SHEET A-06</span><h2 class="sheet-title">Bid &amp; RFP Excellence</h2></div>
+    <p class="sheet-desc">Pre-sales architecture and bid leadership — shaping technical narrative, storyboarding responses, and driving commercial alignment.</p>
+    <div class="dimline"></div>
+
+    <div class="check-list">
+      <div><svg class="icon"><use href="#i-check"/></svg>Pre-Sales Architecture &amp; Bid Leadership</div>
+      <div><svg class="icon"><use href="#i-check"/></svg>RFP/RFI Response Strategy &amp; Storyboarding</div>
+      <div><svg class="icon"><use href="#i-check"/></svg>Solution Shaping &amp; Commercial Alignment</div>
+      <div><svg class="icon"><use href="#i-check"/></svg>Red &amp; Amber Reviews</div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-box"><svg class="icon"><use href="#i-clock"/></svg><div class="num">40%</div><div class="lbl">Reduction in RFP response time via reusable templates &amp; frameworks</div></div>
+      <div class="stat-box"><svg class="icon"><use href="#i-trend"/></svg><div class="num">32%</div><div class="lbl">Increase in bid win rate through sharpened win themes &amp; differentiators</div></div>
+      <div class="stat-box"><svg class="icon"><use href="#i-award"/></svg><div class="num">1st</div><div class="lbl">Highest-scored technical lead during orals evaluation feedback</div></div>
+    </div>
+
+    <div class="card">
+      <h4><svg class="icon"><use href="#i-award"/></svg>Track Record</h4>
+      <ul>
+        <li>Directed technical responses for complex RFPs, ensuring clarity, compliance and compelling storytelling.</li>
+        <li>Created reusable bid templates, architecture frameworks, and value-based messaging.</li>
+        <li>Acted as technical lead during orals, delivering persuasive presentations.</li>
+        <li>Secured multiple cloud transformation deals by designing modular, cost-optimised architectures and leading multidisciplinary bid teams.</li>
+        <li>Developed a repeatable pre-sales playbook adopted across the organisation, improving qualification discipline and solution consistency.</li>
+        <li>Partnered with sales directors to shape win themes, competitive differentiators, and value propositions.</li>
+        <li>Designed and delivered high-impact customer workshops, discovery sessions, and executive briefings to uncover business drivers and shape solution direction.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="panel" id="panel-contact">
+    <div class="sheet-head"><svg class="icon sheet-icon"><use href="#i-send"/></svg><span class="sheet-num">SHEET A-07</span><h2 class="sheet-title">Contact</h2></div>
+    <p class="sheet-desc">Available for architecture leadership, cloud modernisation and pre-sales engagements.</p>
+    <div class="dimline"></div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h4 class="mono" style="color:#000000;text-transform:uppercase;font-size:14.5px;letter-spacing:.08em;margin:0 0 16px;"><svg class="icon"><use href="#i-send"/></svg>Contact Details</h4>
+        <div class="contact-line"><span><svg class="icon"><use href="#i-mail"/></svg>Email</span><a href="mailto:arindrajit@live.com">arindrajit@live.com</a></div>
+        <div class="contact-line"><span><svg class="icon"><use href="#i-phone"/></svg>Phone</span><a href="tel:+447586593548">07586 593548</a></div>
+        <div class="contact-line"><span><svg class="icon"><use href="#i-pin"/></svg>Location</span><b style="color:var(--text)">London, United Kingdom</b></div>
+        <div class="contact-line"><span><svg class="icon"><use href="#i-linkedin"/></svg>LinkedIn</span><a href="https://www.linkedin.com/in/arindrajitsarkar" target="_blank" rel="noopener">linkedin.com/in/arindrajitsarkar</a></div>
+      </div>
+      <div class="contact-card">
+        <h4 class="mono" style="color:#000000;text-transform:uppercase;font-size:14.5px;letter-spacing:.08em;margin:0 0 16px;"><svg class="icon"><use href="#i-award"/></svg>Education &amp; Certifications</h4>
+        <div class="edu-item">
+          <b><svg class="icon"><use href="#i-book"/></svg>Bachelor of Engineering</b>
+          <span>Information Technology, 2005 batch</span>
+        </div>
+        <ul class="cert-list">
+          <li><svg class="icon"><use href="#i-award"/></svg>Azure Solution Architect Expert</li>
+          <li><svg class="icon"><use href="#i-award"/></svg>AWS Associate Solution Architect</li>
+          <li><svg class="icon"><use href="#i-award"/></svg>TOGAF (Preparing)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    ARINDRAJIT SARKAR — ARCHITECTURE PORTFOLIO · DRAWN TO SCALE, NOT TO SCALE · LONDON, UK · 2026
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  const buttons = document.querySelectorAll('.nav button');
+  const panels = document.querySelectorAll('.panel');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const tab = btn.getAttribute('data-tab');
+      buttons.forEach(b=>b.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-'+tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
